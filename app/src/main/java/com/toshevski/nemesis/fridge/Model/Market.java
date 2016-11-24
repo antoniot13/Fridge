@@ -1,7 +1,13 @@
 package com.toshevski.nemesis.fridge.Model;
 
-/**
- * Created by nemesis on 24-Nov-16.
- */
+import android.location.Location;
+
 public class Market {
+    public String Name;
+    public Location Location;
+
+    public Market(String Name, Location Location) {
+        this.Name = Name;
+        this.Location = Location;
+    }
 }
