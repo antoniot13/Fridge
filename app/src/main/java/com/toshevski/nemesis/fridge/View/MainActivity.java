@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity
             Product product = products.get(arg0);
 
             name.setText(product.Name);
-            quan.setText(Double.toString(product.Quantity));
+            quan.setText("Количество: " + Double.toString(product.Quantity));
             if(product.IsAvailable) {
                 name.setTypeface(null, Typeface.BOLD);
             }
