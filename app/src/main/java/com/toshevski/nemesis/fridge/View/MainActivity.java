@@ -1,8 +1,12 @@
 package com.toshevski.nemesis.fridge.View;
+import com.toshevski.nemesis.fridge.Database.StaticData;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,18 +16,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.toshevski.nemesis.fridge.Model.Product;
 import com.toshevski.nemesis.fridge.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    ProductAdapter pa;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //Implementation of adapter
+        pa = new ProductAdapter();
+        ListView productsInListView = (ListView)findViewById(R.id.listProducts);
+        productsInListView.setAdapter(pa);
+        pa.notifyDataSetChanged();
+        productsInListView.setAlpha(1);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -88,11 +112,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_manage) {
-
         } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
 
         }
 
@@ -100,4 +120,46 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    public class ProductAdapter extends BaseAdapter {
+
+        ArrayList<Product> products = StaticData.getProducts();
+
+        @Override
+        public int getCount() {
+            return products.size();
+        }
+
+        @Override
+        public Product getItem(int arg0) {
+            return products.get(arg0);
+        }
+
+        @Override
+        public long getItemId(int arg0) {
+            return arg0;
+        }
+
+        @Override
+        public View getView(int arg0, View arg1, ViewGroup arg2) {
+            LayoutInflater inflater = (LayoutInflater) MainActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            arg1 = inflater.inflate(R.layout.list_view, arg2, false);
+
+            TextView name = (TextView)arg1.findViewById(R.id.textView1);
+            TextView quan = (TextView)arg1.findViewById(R.id.textView2);
+
+            Product product = products.get(arg0);
+
+            name.setText(product.Name);
+            quan.setText(Double.toString(product.Quantity));
+            if(product.IsAvailable) {
+                name.setTypeface(null, Typeface.BOLD);
+            }
+
+            return arg1;
+        }
+    }
+
+
+
 }
