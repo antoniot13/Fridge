@@ -16,12 +16,12 @@
             android:title="Мој буџет" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Опции">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Сподели" />
+                android:title="Поставки" />
         </menu>
     </item>
 

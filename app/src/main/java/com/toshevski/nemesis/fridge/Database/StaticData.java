@@ -12,7 +12,7 @@ public class StaticData {
 
     public static ArrayList<Market> getMarkets() {
         ArrayList<Market> markets = new ArrayList<Market>();
-        // markets.add(new Market("SP", Location.FusedLocationApi.getLastLocation(mGoogleApiClient)));
+        // markets.add(new Market("SP",);
 
         return markets;
     }
