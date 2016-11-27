@@ -16,6 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Database.StaticData;
 import com.toshevski.nemesis.fridge.Model.Market;
 import com.toshevski.nemesis.fridge.Model.Product;
@@ -34,7 +35,7 @@ public class MarketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_market);
 
         //Implementation of adapter
-        ma = new MarketAdapter();
+        ma = new MarketAdapter(getApplicationContext());
         ListView marketsInListView = (ListView)findViewById(R.id.listMarkets);
         marketsInListView.setAdapter(ma);
         ma.notifyDataSetChanged();
@@ -56,7 +57,12 @@ public class MarketActivity extends AppCompatActivity {
 
     public class MarketAdapter extends BaseAdapter {
 
-        ArrayList<Market> markets = StaticData.getMarkets();
+        ArrayList<Market> markets;
+
+        MarketAdapter(Context ctx) {
+            Data d = new Data(ctx);
+            markets = d.getAllMarkets();
+        }
 
         @Override
         public int getCount() {

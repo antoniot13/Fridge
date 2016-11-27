@@ -1,5 +1,10 @@
 package com.toshevski.nemesis.fridge.View;
+<<<<<<< HEAD
 import com.amulyakhare.textdrawable.TextDrawable;
+=======
+import com.toshevski.nemesis.fridge.Database.Data;
+import com.toshevski.nemesis.fridge.Database.FillDB;
+>>>>>>> origin/master
 import com.toshevski.nemesis.fridge.Database.StaticData;
 
 import android.content.Context;
@@ -9,6 +14,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -42,12 +48,20 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Data d = new Data(getApplicationContext());
+        FillDB fdb = new FillDB(getApplicationContext());
+        if (d.getAllProducts().size() < 1)
+            fdb.FillProducts();
+        if (d.getAllMarkets().size() < 1)
+            fdb.FillMarkets();
+
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         //Implementation of adapter
-        pa = new ProductAdapter();
+        pa = new ProductAdapter(getApplicationContext());
         ListView productsInListView = (ListView)findViewById(R.id.listProducts);
         productsInListView.setAdapter(pa);
         pa.notifyDataSetChanged();
@@ -70,6 +84,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override
@@ -114,7 +129,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, MarketActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-            Intent intent=new Intent(MainActivity.this,MyRecipesActivity.class);
+            Intent intent = new Intent(MainActivity.this, MyRecipesActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
@@ -130,7 +145,12 @@ public class MainActivity extends AppCompatActivity
 
     public class ProductAdapter extends BaseAdapter {
 
-        ArrayList<Product> products = StaticData.getProducts();
+        ArrayList<Product> products;
+
+        ProductAdapter(Context ctx) {
+            Data d = new Data(ctx);
+            products = d.getAllProducts();
+        }
 
         @Override
         public int getCount() {
