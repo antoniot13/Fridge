@@ -52,7 +52,6 @@ public class MarketActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     public class MarketAdapter extends BaseAdapter {
