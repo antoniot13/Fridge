@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/content_add_recipe"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.toshevski.nemesis.fridge.View.AddRecipeActivity"
+    tools:showIn="@layout/activity_add_recipe"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="Name"
+            android:layout_width="57dp"
+            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView23" />
+
+        <EditText
+            android:text=""
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/darker_gray"
+            android:id="@+id/editText1" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:text="Product"
+            android:gravity="center_vertical"
+            android:layout_width="57dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView25" />
+
+        <EditText
+            android:text=""
+            android:layout_width="248dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/darker_gray"
+            android:id="@+id/editText2" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+
+            android:id="@+id/imageButton"
+            android:src="@android:drawable/ic_input_add" />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="142dp"
+        android:id="@+id/listView"
+        android:layout_weight="0.40" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+
+            android:gravity="center_vertical"
+            android:layout_width="94dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView29" />
+        <TextView
+
+            android:gravity="center_vertical"
+            android:layout_width="94dp"
+            android:layout_height="match_parent"
+            android:id="@+id/textView30" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+        <EditText
+            android:text=""
+            android:layout_width="357dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/white"
+            android:imeOptions="actionDone"
+            android:hint="Description"
+            android:minLines="3"
+            android:id="@+id/editText3" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
