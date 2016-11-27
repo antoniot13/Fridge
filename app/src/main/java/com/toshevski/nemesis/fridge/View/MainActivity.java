@@ -1,8 +1,10 @@
 package com.toshevski.nemesis.fridge.View;
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.toshevski.nemesis.fridge.Database.StaticData;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -19,6 +21,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -151,7 +154,8 @@ public class MainActivity extends AppCompatActivity
 
             TextView name = (TextView)arg1.findViewById(R.id.textView1);
             TextView quan = (TextView)arg1.findViewById(R.id.textView2);
-
+            ImageView image = (ImageView) findViewById(R.id.image_view);
+            TextDrawable drawable = TextDrawable.builder().buildRect("A", Color.RED);
             Product product = products.get(arg0);
 
             name.setText(product.Name);
@@ -159,6 +163,7 @@ public class MainActivity extends AppCompatActivity
             if(product.IsAvailable) {
                 name.setTypeface(null, Typeface.BOLD);
             }
+            // image.setImageDrawable(drawable);
 
             return arg1;
         }
