@@ -12,20 +12,51 @@ public class StaticData {
 
     public static ArrayList<Market> getMarkets() {
 
-        Location targetLocation = new Location("");//provider name is unecessary
-        targetLocation.setLatitude(0.0d);//your coords of course
-        targetLocation.setLongitude(0.0d);
+
 
         ArrayList<Market> markets = new ArrayList<Market>();
+
+        Location targetLocation = new Location("");
+        targetLocation.setLatitude(41.9713929);//your coords of course
+        targetLocation.setLongitude(21.4183397);
+
         markets.add(new Market("СП", targetLocation));
+
+        targetLocation = new Location("");
+        targetLocation.setLatitude(42.0026635);//your coords of course
+        targetLocation.setLongitude(21.3740188);
+
         markets.add(new Market("Тинекс", targetLocation));
+
+        targetLocation = new Location("");
+        targetLocation.setLatitude(41.993978);//your coords of course
+        targetLocation.setLongitude(21.4325983);
+
         markets.add(new Market("Веро", targetLocation));
+
+        targetLocation = new Location("");
+        targetLocation.setLatitude(41.9914047);//your coords of course
+        targetLocation.setLongitude(21.425609);
+
         markets.add(new Market("Рамстор", targetLocation));
+
+        targetLocation = new Location("");
+        targetLocation.setLatitude(41.993957);//your coords of course
+        targetLocation.setLongitude(21.3996543);
+
         markets.add(new Market("КАМ", targetLocation));
+
+        targetLocation = new Location("");
+        targetLocation.setLatitude(42.0068395);//your coords of course
+        targetLocation.setLongitude(21.3979474);
+
         markets.add(new Market("Гранап", targetLocation));
+
+        targetLocation = new Location("");
+        targetLocation.setLatitude(41.9801143);//your coords of course
+        targetLocation.setLongitude(21.473186);
+
         markets.add(new Market("Рептил", targetLocation));
-        markets.add(new Market("Макс Лукс", targetLocation));
-        markets.add(new Market("Пожаренка", targetLocation));
 
         return markets;
     }

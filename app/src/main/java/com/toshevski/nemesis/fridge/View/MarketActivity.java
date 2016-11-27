@@ -2,12 +2,16 @@ package com.toshevski.nemesis.fridge.View;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -35,6 +39,19 @@ public class MarketActivity extends AppCompatActivity {
         marketsInListView.setAdapter(ma);
         ma.notifyDataSetChanged();
         marketsInListView.setAlpha(1);
+
+        marketsInListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.e("MARKET", "I: " + i);
+                Market m = ma.getItem(i);
+                String strUri = "http://maps.google.com/maps?q=loc:" + m.Location.getLatitude() +
+                        "," + m.Location.getLongitude() + " (" + m.Name + ")";
+                Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(strUri));
+                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                startActivity(intent);
+            }
+        });
 
     }
 
