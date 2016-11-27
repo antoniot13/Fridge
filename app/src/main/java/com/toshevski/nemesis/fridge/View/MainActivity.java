@@ -1,4 +1,5 @@
 package com.toshevski.nemesis.fridge.View;
+import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Database.StaticData;
 
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -67,6 +69,17 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // TEST
+        Data d = new Data(getApplicationContext());
+        for (int i = 0; i < pa.getCount(); ++i) {
+            d.insertIntoProducts(pa.getItem(i));
+        }
+
+
+        ArrayList<Product> alp = d.getAllProducts();
+        Log.i("PRODUCTS DB", "ALP: " + alp.size());
+        // END TEST
     }
 
     @Override
@@ -111,7 +124,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, MarketActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-            Intent intent=new Intent(MainActivity.this,MyRecipesActivity.class);
+            Intent intent = new Intent(MainActivity.this, MyRecipesActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
