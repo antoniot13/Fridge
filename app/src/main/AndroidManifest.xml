@@ -31,8 +31,12 @@
             android:label="@string/markets" />
         <activity
             android:name=".View.AddRecipeActivity"
-            android:windowSoftInputMode="adjustPan"
             android:label="@string/title_activity_add_recipe"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".View.MyRecipesActivity"
+            android:label="@string/title_activity_my_recipes"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
