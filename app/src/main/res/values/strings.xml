@@ -21,4 +21,5 @@
     </string>
     <string name="title_activity_add_recipe">Add Recipe</string>
     <string name="title_activity_my_recipes">MyRecipesActivity</string>
+    <string name="title_activity_single_recipe">SingleRecipeActivity</string>
 </resources>
