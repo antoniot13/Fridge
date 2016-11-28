@@ -28,6 +28,7 @@ public class Data {
         dbc.getWritableDatabase().insert(DB.Markets.TABLE_NAME, null, cv);
     }
 
+
     public void insertIntoProducts(Product m) {
         ContentValues cv = new ContentValues();
         cv.put(DB.Products.NAME, m.Name);
