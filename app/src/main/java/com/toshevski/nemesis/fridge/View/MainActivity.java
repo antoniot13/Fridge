@@ -1,10 +1,10 @@
 package com.toshevski.nemesis.fridge.View;
-<<<<<<< HEAD
+
 import com.amulyakhare.textdrawable.TextDrawable;
-=======
+
 import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Database.FillDB;
->>>>>>> origin/master
+
 import com.toshevski.nemesis.fridge.Database.StaticData;
 
 import android.content.Context;
