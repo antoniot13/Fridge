@@ -3,11 +3,18 @@ package com.toshevski.nemesis.fridge.View;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -21,7 +28,7 @@ import com.toshevski.nemesis.fridge.R;
 
 import java.util.ArrayList;
 
-public class MyRecipesActivity extends AppCompatActivity {
+public class MyRecipesActivity extends AppCompatActivity   {
     RecipeAdapter ra;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +47,20 @@ public class MyRecipesActivity extends AppCompatActivity {
         });
 
         ra = new RecipeAdapter();
-        ListView marketsInListView = (ListView)findViewById(R.id.listRecipes);
+        ListView marketsInListView = (ListView) findViewById(R.id.listRecipes);
         marketsInListView.setAdapter(ra);
         ra.notifyDataSetChanged();
         marketsInListView.setAlpha(1);
         marketsInListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent myintent=new Intent(MyRecipesActivity.this, SingleRecipeActivity.class).putExtra("int_value", position);
+                Intent myintent = new Intent(MyRecipesActivity.this, SingleRecipeActivity.class).putExtra("int_value", position);
                 startActivity(myintent);
             }
         });
     }
+
+
 
     public class RecipeAdapter extends BaseAdapter {
 
