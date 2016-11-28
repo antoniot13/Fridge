@@ -30,6 +30,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.toshevski.nemesis.fridge.Model.Product;
 import com.toshevski.nemesis.fridge.R;
@@ -66,13 +67,29 @@ public class MainActivity extends AppCompatActivity
         productsInListView.setAdapter(pa);
         pa.notifyDataSetChanged();
         productsInListView.setAlpha(1);
-
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent simple = new Intent(MainActivity.this,AddProductActivity.class);
                 startActivity(simple);
+            }
+        });
+*/
+        // tuka implementacija za button
+        findViewById(R.id.action_a).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent simple = new Intent(MainActivity.this,AddProductActivity.class);
+                startActivity(simple);
+            }
+        });
+
+        findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
             }
         });
 
