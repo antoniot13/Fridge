@@ -52,10 +52,14 @@ public class AddProductActivity extends AppCompatActivity {
             Data d = new Data(getApplicationContext());
             EditText tmp=(EditText) findViewById(R.id.editText1);
             EditText tmp2=(EditText) findViewById(R.id.editText2);
-            Product p =new Product("",0,false);
-            p.Name=tmp.getText().toString();
-            p.Quantity=Double.parseDouble(tmp2.getText().toString());
-            d.insertIntoProducts(p);
+            if(!tmp.getText().toString().matches("") && !tmp2.getText().toString().matches("")) {
+                Product p = new Product("", 0, false);
+                p.Name = tmp.getText().toString();
+                p.Quantity = Double.parseDouble(tmp2.getText().toString());
+                d.insertIntoProducts(p);
+                tmp.setText("");
+                tmp2.setText("");
+            }
 
         }
 
