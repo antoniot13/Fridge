@@ -89,7 +89,8 @@ public class MainActivity extends AppCompatActivity
         findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+                Intent simple = new Intent(MainActivity.this,AddRecipeActivity.class);
+                startActivity(simple);
             }
         });
 

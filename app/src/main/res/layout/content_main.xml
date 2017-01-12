@@ -49,7 +49,6 @@
             fab:fab_colorNormal="@color/white"
             fab:fab_title="Додади рецепт"
             fab:fab_colorPressed="@color/white_pressed"/>
-
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 

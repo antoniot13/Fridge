@@ -21,6 +21,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.toshevski.nemesis.fridge.Database.StaticData;
 import com.toshevski.nemesis.fridge.Model.Recipe;
@@ -36,13 +37,29 @@ public class MyRecipesActivity extends AppCompatActivity   {
         setContentView(R.layout.activity_my_recipes);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+/*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+            }
+        });
+*/
+        // tuka implementacija za button
+        findViewById(R.id.action_a).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent simple = new Intent(MyRecipesActivity.this,AddProductActivity.class);
+                startActivity(simple);
+            }
+        });
+
+        findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MyRecipesActivity.this, "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
             }
         });
 
