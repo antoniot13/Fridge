@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(String... strings) {
             JSONParser<String> jp = new JSONParser<>(50358);
-            jp.getList("/Home/GetProducts");
+            jp.getList("Home/GetProducts");
             return null;
         }
 

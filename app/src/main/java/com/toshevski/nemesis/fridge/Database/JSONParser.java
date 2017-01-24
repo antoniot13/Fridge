@@ -16,12 +16,12 @@ public class JSONParser<T> {
 
     public JSONParser(int PORT) {
         this.PORT = PORT;
-        this.baseURL = "http://192.168.0.101:";
+        this.baseURL = "192.168.0.101";
     }
 
     public ArrayList<T> getList(String urlLink) {
         try {
-            URL url = new URL(baseURL + "" + PORT + urlLink);
+            URL url = new URL("http", baseURL, PORT, urlLink);
             Log.d("INFOOO", url.toString());
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
