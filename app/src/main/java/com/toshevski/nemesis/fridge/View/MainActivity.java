@@ -184,7 +184,8 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+            pd.hide();
+            pd.dismiss();
         }
     }
 
