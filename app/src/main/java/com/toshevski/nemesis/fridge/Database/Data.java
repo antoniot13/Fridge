@@ -8,6 +8,7 @@ import android.location.Location;
 
 import com.toshevski.nemesis.fridge.Model.Market;
 import com.toshevski.nemesis.fridge.Model.Product;
+import com.toshevski.nemesis.fridge.Model.Recipe;
 
 import java.util.ArrayList;
 
@@ -85,6 +86,32 @@ public class Data {
                 double qty = Double.parseDouble(c.getString(3));
 
                 mark = new Product(name, qty, avail);
+
+                m.add(mark);
+            } while (c.moveToNext());
+        }
+
+        c.close();
+        return m;
+    }
+
+    public ArrayList<Recipe> getAllReceipts() {
+        ArrayList<Recipe> m = new ArrayList<>();
+
+        SQLiteDatabase db = dbc.getReadableDatabase();
+
+        String query = "SELECT  * FROM " + DB.Products.TABLE_NAME;
+
+        Cursor c = db.rawQuery(query, null);
+
+        Recipe mark = null;
+        if (c.moveToFirst()) {
+            do {
+                String name = c.getString(1);
+                boolean avail = Integer.parseInt(c.getString(2)) != 0;
+                double qty = Double.parseDouble(c.getString(3));
+
+                //mark = new Recipe();
 
                 m.add(mark);
             } while (c.moveToNext());
