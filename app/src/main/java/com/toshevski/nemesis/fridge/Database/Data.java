@@ -24,6 +24,27 @@ public class Data {
         dbc = new DB(ctx);
     }
 
+    public void saveCredentials(String username, String password) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("username", username);
+        editor.putString("password", password);
+        editor.putBoolean("saveme", true);
+        editor.apply();
+    }
+
+    public void setSaveMe(boolean saveme) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("saveme", saveme);
+        editor.apply();
+    }
+
+    public boolean getSaveMe() {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        return settings.getBoolean("saveme", false);
+    }
+
     public void insertIntoMarket(Market m) {
         ContentValues cv = new ContentValues();
         cv.put(DB.Markets.NAME, m.Name);

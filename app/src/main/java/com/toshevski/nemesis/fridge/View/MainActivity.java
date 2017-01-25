@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         productsInListView.setAdapter(pa);
         pa.notifyDataSetChanged();
         productsInListView.setAlpha(1);
+        productsInListView.addHeaderView(makeHeader());
 /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +99,15 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+
+    private View makeHeader() {
+        View header = (View) getLayoutInflater().inflate(R.layout.listview_header, null);
+        header.setBackgroundColor(Color.RED);
+        TextView tv = (TextView) header.findViewById(R.id.headerText);
+        tv.setText("TESTSTSTSTS");
+
+        return header;
     }
 
     @Override
