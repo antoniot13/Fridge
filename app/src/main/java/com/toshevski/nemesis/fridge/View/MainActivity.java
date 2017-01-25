@@ -108,7 +108,6 @@ public class MainActivity extends AppCompatActivity
 
     private View makeHeader() {
         View header = getLayoutInflater().inflate(R.layout.listview_header, null);
-
         return header;
     }
 

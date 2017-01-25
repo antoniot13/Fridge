@@ -31,5 +31,4 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.getbase:floatingactionbutton:1.10.1'
-    compile 'com.daimajia.numberprogressbar:library:1.2@aar'
 }
