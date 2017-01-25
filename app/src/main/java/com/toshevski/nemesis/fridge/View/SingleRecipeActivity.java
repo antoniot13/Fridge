@@ -27,31 +27,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_single_recipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-*/
-        // tuka implementacija za button
-        findViewById(R.id.action_a).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent simple = new Intent(SingleRecipeActivity.this,AddProductActivity.class);
-                startActivity(simple);
-            }
-        });
 
-        findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(SingleRecipeActivity.this, "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         int s= getIntent().getIntExtra("int_value",0);
         ArrayList<Recipe> recipes= StaticData.getRecipes();

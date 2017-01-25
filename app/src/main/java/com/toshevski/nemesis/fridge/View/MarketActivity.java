@@ -41,6 +41,7 @@ public class MarketActivity extends AppCompatActivity {
         ma.notifyDataSetChanged();
         marketsInListView.setAlpha(1);
 
+
         marketsInListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -82,7 +83,7 @@ public class MarketActivity extends AppCompatActivity {
         @Override
         public View getView(int arg0, View arg1, ViewGroup arg2) {
             LayoutInflater inflater = (LayoutInflater) MarketActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            arg1 = inflater.inflate(R.layout.list_view, arg2, false);
+            arg1 = inflater.inflate(R.layout.markets_list_view, arg2, false);
 
             TextView name = (TextView)arg1.findViewById(R.id.textView1);
             TextView quan = (TextView)arg1.findViewById(R.id.textView2);

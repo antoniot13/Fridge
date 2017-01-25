@@ -48,7 +48,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         findViewById(R.id.action_a).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent simple = new Intent(AddRecipeActivity.this,AddProductActivity.class);
+                Intent simple = new Intent(AddRecipeActivity.this,MainActivity.class);
                 startActivity(simple);
             }
         });
@@ -56,7 +56,8 @@ public class AddRecipeActivity extends AppCompatActivity {
         findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddRecipeActivity.this, "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+                Intent simple = new Intent(AddRecipeActivity.this,AddProductActivity.class);
+                startActivity(simple);
             }
         });
 
