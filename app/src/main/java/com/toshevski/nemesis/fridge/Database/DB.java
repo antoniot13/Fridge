@@ -69,7 +69,7 @@ public final class DB extends SQLiteOpenHelper {
                     Products.QTY + " DECIMAL" + " )";
 
     public static final String SQL_CREATE_FRIDGES =
-            "CREATE TABEL " + Fridge.TABLE_NAME + " (" +
+            "CREATE TABLE " + Fridge.TABLE_NAME + " (" +
                     Fridge._ID + " INTEGER PRIMARY KEY," +
                     Fridge.NAME + TEXT_TYPE + ")";
 
