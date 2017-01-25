@@ -42,17 +42,39 @@ public class Data {
         cv.put(DB.Recipes.NAME, r.Name);
         cv.put(DB.Recipes.DESC, r.Description);
 
-        dbc.getWritableDatabase().insert(DB.Recipes.TABLE_NAME, null, cv);
+        long RID = dbc.getWritableDatabase().insert(DB.Recipes.TABLE_NAME, null, cv);
+        for (Product p : r.Products) {
+            long PID = getID(DB.Products.TABLE_NAME, p.Name);
+            insertIntoReceiptsProducts((int) RID, (int) PID);
+        }
+    }
+
+    public void insertIntoReceiptsProducts(int RID, int PID) {
+        ContentValues cv = new ContentValues();
+        cv.put(DB.ReceiptsProducts.PID, PID);
+        cv.put(DB.ReceiptsProducts.RID, RID);
+
+        dbc.getWritableDatabase().insert(DB.ReceiptsProducts.TABLE_NAME, null, cv);
+    }
+
+    public long getID(String TABLE, String NAME) {
+        SQLiteDatabase db = dbc.getReadableDatabase();
+        Cursor mCursor = db.rawQuery(
+                "SELECT id  FROM " + TABLE + " WHERE name = '" + NAME + "'", null);
+        if (mCursor != null) {
+            return mCursor.getLong(0);
+        }
+        return -1;
     }
 
 
-    public void insertIntoProducts(Product m) {
+    public long insertIntoProducts(Product m) {
         ContentValues cv = new ContentValues();
         cv.put(DB.Products.NAME, m.Name);
         cv.put(DB.Products.AVAIL, m.IsAvailable ? 1 : 0);
         cv.put(DB.Products.QTY, m.Quantity);
 
-        dbc.getWritableDatabase().insert(DB.Products.TABLE_NAME, null, cv);
+        return dbc.getWritableDatabase().insert(DB.Products.TABLE_NAME, null, cv);
     }
 
     public void deleteFromProducts(Product m) {
