@@ -351,7 +351,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 Data d = new Data(LoginActivity.this);
-                d.saveCredentials(mEmail, mPassword);
+                d.saveCredentials(mEmail, mPassword, true);
                 //finish();
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);

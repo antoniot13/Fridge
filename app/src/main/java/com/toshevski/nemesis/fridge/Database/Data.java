@@ -24,12 +24,12 @@ public class Data {
         dbc = new DB(ctx);
     }
 
-    public void saveCredentials(String username, String password) {
+    public void saveCredentials(String username, String password, boolean saveMe) {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("username", username);
         editor.putString("password", password);
-        editor.putBoolean("saveme", true);
+        editor.putBoolean("saveme", saveMe);
         editor.apply();
     }
 
