@@ -50,6 +50,16 @@ public class Data {
         return budget;
     }
 
+    public int increaseBudget(int howMuchToReduce) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        int budget = settings.getInt("Budget", 0);
+        budget += howMuchToReduce;
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("Budget", budget);
+        editor.apply();
+        return budget;
+    }
+
     public int getBudget() {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         return settings.getInt("Budget", 0);
