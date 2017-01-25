@@ -2,6 +2,7 @@
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Database.FillDB;
 
@@ -13,6 +14,7 @@ import android.graphics.Typeface;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -57,6 +59,8 @@ public class MainActivity extends AppCompatActivity
 
         Data d = new Data(getApplicationContext());
         FillDB fdb = new FillDB(getApplicationContext());
+        d.setLimit(2000);
+        d.setBudget(1000);
         if (d.getAllProducts().size() < 1)
             fdb.FillProducts();
         if (d.getAllMarkets().size() < 1)
@@ -74,6 +78,7 @@ public class MainActivity extends AppCompatActivity
         productsInListView.setAdapter(pa);
         pa.notifyDataSetChanged();
         productsInListView.setAlpha(1);
+        productsInListView.addHeaderView(makeHeader());
 /*
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +117,27 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void setUpProgress() {
+
+    }
+
+    private View makeHeader() {
+        View header = getLayoutInflater().inflate(R.layout.listview_header, null);
+        CircularProgressBar cpb = (CircularProgressBar) header.findViewById(R.id.cpb);
+        cpb.setColor(Color.rgb(112, 206, 224));
+        Data d = new Data(this);
+        int progress = (int) (100.0/d.getLimit() * d.getBudget());
+        cpb.setProgressWithAnimation(progress, 2500);
+
+        TextView limit = (TextView) header.findViewById(R.id.tvLimit);
+        TextView budget = (TextView) header.findViewById(R.id.tvBudget);
+
+        limit.setText("Limit: " + d.getLimit());
+        budget.setText("Budget: " + d.getBudget());
+
+        return header;
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -139,6 +165,9 @@ public class MainActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        } else if (id == R.id.action_logout) {
+            Data d = new Data(this);
+            d.saveCredentials("", "", false);
         }
 
         return super.onOptionsItemSelected(item);

@@ -2,6 +2,7 @@ package com.toshevski.nemesis.fridge.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
@@ -16,9 +17,32 @@ import java.util.ArrayList;
 public class Data {
 
     private static DB dbc;
+    private Context ctx;
 
     public Data(Context ctx) {
-         dbc = new DB(ctx);
+        this.ctx = ctx;
+        dbc = new DB(ctx);
+    }
+
+    public void saveCredentials(String username, String password, boolean saveMe) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("username", username);
+        editor.putString("password", password);
+        editor.putBoolean("saveme", saveMe);
+        editor.apply();
+    }
+
+    public void setSaveMe(boolean saveme) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean("saveme", saveme);
+        editor.apply();
+    }
+
+    public boolean getSaveMe() {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        return settings.getBoolean("saveme", false);
     }
 
     public void insertIntoMarket(Market m) {
@@ -30,8 +54,48 @@ public class Data {
         dbc.getWritableDatabase().insert(DB.Markets.TABLE_NAME, null, cv);
     }
 
-    public void deleteMarkets() {
-        dbc.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + DB.Markets.TABLE_NAME);
+    public void setBudget(int budget) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("Budget", budget);
+        editor.apply();
+    }
+
+    public void setLimit(int budget) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("Limit", budget);
+        editor.apply();
+    }
+
+    public int reduceBudget(int howMuchToReduce) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        int budget = settings.getInt("Budget", 0);
+        budget -= howMuchToReduce;
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("Budget", budget);
+        editor.apply();
+        return budget;
+    }
+
+    public int increaseBudget(int howMuchToReduce) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        int budget = settings.getInt("Budget", 0);
+        budget += howMuchToReduce;
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("Budget", budget);
+        editor.apply();
+        return budget;
+    }
+
+    public int getBudget() {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        return settings.getInt("Budget", 0);
+    }
+
+    public int getLimit() {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        return settings.getInt("Limit", 0);
     }
 
     public void deleteFromMarkets(Market m) {
@@ -60,7 +124,6 @@ public class Data {
 
         dbc.getWritableDatabase().insert(DB.ReceiptsProducts.TABLE_NAME, null, cv);
     }
-
 
     public long getID(String TABLE, String NAME) {
         SQLiteDatabase db = dbc.getReadableDatabase();

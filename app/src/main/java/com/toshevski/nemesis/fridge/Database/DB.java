@@ -69,7 +69,7 @@ public final class DB extends SQLiteOpenHelper {
                     Products.QTY + " DECIMAL" + " )";
 
     public static final String SQL_CREATE_FRIDGES =
-            "CREATE TABEL " + Fridge.TABLE_NAME + " (" +
+            "CREATE TABLE " + Fridge.TABLE_NAME + " (" +
                     Fridge._ID + " INTEGER PRIMARY KEY," +
                     Fridge.NAME + TEXT_TYPE + ")";
 
@@ -77,7 +77,7 @@ public final class DB extends SQLiteOpenHelper {
             "CREATE TABLE " + ReceiptsProducts.TABLE_NAME + " (" +
                     ReceiptsProducts.RID + " INTEGER NOT NULL, " +
                     ReceiptsProducts.PID + " INTEGER NOT NULL, " +
-                    "PRIMARY KEY ( + " + ReceiptsProducts.RID + ", " + ReceiptsProducts.PID + "))";
+                    "PRIMARY KEY (" + ReceiptsProducts.RID + ", " + ReceiptsProducts.PID + "))";
 
     public static final String SQL_DELETE_MARKETS =
             "DROP TABLE IF EXISTS " + Markets.TABLE_NAME;
