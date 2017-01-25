@@ -1,5 +1,6 @@
 package com.toshevski.nemesis.fridge.View;
 
+import com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar;
 import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.amulyakhare.textdrawable.TextDrawable;
 
@@ -109,10 +110,7 @@ public class MainActivity extends AppCompatActivity
 
     private View makeHeader() {
         View header = (View) getLayoutInflater().inflate(R.layout.listview_header, null);
-        header.setBackgroundColor(Color.RED);
-        TextView tv = (TextView) header.findViewById(R.id.headerText);
-        tv.setText("TESTSTSTSTS");
-        RoundCornerProgressBar rcpb = (RoundCornerProgressBar) header.findViewById(R.id.progress_1);
+        IconRoundCornerProgressBar rcpb = (IconRoundCornerProgressBar) header.findViewById(R.id.progress_1);
         rcpb.setMax(700);
         rcpb.setProgress(350);
         return header;

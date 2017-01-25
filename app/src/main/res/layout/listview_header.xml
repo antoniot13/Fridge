@@ -5,17 +5,19 @@
     android:layout_height="150dp"
     >
 
-    <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+    <com.akexorcist.roundcornerprogressbar.IconRoundCornerProgressBar
         android:id="@+id/progress_1"
         android:layout_height="50dp"
         android:layout_width="match_parent"
+        app:rcRadius="5dp"
+        app:rcIconSize="34dp"
+        app:rcIconWidth="34dp"
+        app:rcIconHeight="34dp"
+        app:rcIconSrc="@drawable/ic_attach_money_black_48dp"
+        app:rcProgressColor="#34a6a8"
+        app:rcIconBackgroundColor="@color/half_black"
+        app:rcBackgroundColor="#d4dddd"
+        app:rcIconPadding="3dp"
         app:rcBackgroundPadding="5dp" />
-
-    <TextView
-        android:id="@+id/headerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CodeLearn 2"
-        android:textSize="16sp" />
 
 </LinearLayout>
