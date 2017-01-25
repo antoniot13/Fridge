@@ -2,6 +2,7 @@ package com.toshevski.nemesis.fridge.View;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
+import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Database.FillDB;
 
@@ -108,6 +109,9 @@ public class MainActivity extends AppCompatActivity
 
     private View makeHeader() {
         View header = getLayoutInflater().inflate(R.layout.listview_header, null);
+        CircularProgressBar cpb = (CircularProgressBar) header.findViewById(R.id.cpb);
+        cpb.setColor(Color.rgb(112, 206, 224));
+        cpb.setProgressWithAnimation(80, 2500);
         return header;
     }
 
