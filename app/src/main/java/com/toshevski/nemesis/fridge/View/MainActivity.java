@@ -5,9 +5,6 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Database.FillDB;
 
-import com.toshevski.nemesis.fridge.Database.JSONParser;
-import com.toshevski.nemesis.fridge.Database.StaticData;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,9 +12,6 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -33,13 +27,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.toshevski.nemesis.fridge.Model.Product;
 import com.toshevski.nemesis.fridge.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -52,7 +44,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        new Parser().execute();
         Data d = new Data(getApplicationContext());
         FillDB fdb = new FillDB(getApplicationContext());
         if (d.getAllProducts().size() < 1)
@@ -163,30 +154,6 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private class Parser extends AsyncTask<String, Void, Void> {
-        private ProgressDialog pd;
-        @Override
-        protected void onPreExecute() {
-            pd = new ProgressDialog(MainActivity.this);
-            pd.setIndeterminate(false);
-            pd.setCancelable(true);
-            pd.show();
-        }
-
-        @Override
-        protected Void doInBackground(String... strings) {
-            JSONParser<String> jp = new JSONParser<>(50358);
-            jp.getList("Home/GetProducts");
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            pd.hide();
-            pd.dismiss();
-        }
     }
 
     public class ProductAdapter extends BaseAdapter {
