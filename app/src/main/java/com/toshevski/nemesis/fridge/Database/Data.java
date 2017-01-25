@@ -2,6 +2,7 @@ package com.toshevski.nemesis.fridge.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
@@ -16,9 +17,11 @@ import java.util.ArrayList;
 public class Data {
 
     private static DB dbc;
+    private Context ctx;
 
     public Data(Context ctx) {
-         dbc = new DB(ctx);
+        this.ctx = ctx;
+        dbc = new DB(ctx);
     }
 
     public void insertIntoMarket(Market m) {
@@ -28,6 +31,18 @@ public class Data {
         cv.put(DB.Markets.LON, m.Location.getLongitude());
 
         dbc.getWritableDatabase().insert(DB.Markets.TABLE_NAME, null, cv);
+    }
+
+    public void setBudget(int budget) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("Budget", budget);
+        editor.apply();
+    }
+
+    public int getBudget() {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        return settings.getInt("Budget", 0);
     }
 
     public void deleteFromMarkets(Market m) {
