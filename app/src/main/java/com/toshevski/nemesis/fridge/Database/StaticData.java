@@ -13,8 +13,6 @@ public class StaticData {
 
     public static ArrayList<Market> getMarkets() {
 
-
-
         ArrayList<Market> markets = new ArrayList<Market>();
 
         Location targetLocation = new Location("");

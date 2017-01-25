@@ -24,7 +24,7 @@ public class FillDB {
     public void FillMarkets() {
 
         Data d = new Data(ctx);
-
+/*
         Location targetLocation = new Location("");
         targetLocation.setLatitude(41.9713929);//your coords of course
         targetLocation.setLongitude(21.4183397);
@@ -66,7 +66,7 @@ public class FillDB {
         targetLocation.setLongitude(21.473186);
 
         d.insertIntoMarket(new Market("Рептил", targetLocation));
-
+*/
     }
 
     public void FillProducts() {

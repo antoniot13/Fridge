@@ -11,6 +11,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,9 +34,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.toshevski.nemesis.fridge.Database.TrackGPS;
+import com.toshevski.nemesis.fridge.Model.Market;
 import com.toshevski.nemesis.fridge.Model.Product;
 import com.toshevski.nemesis.fridge.R;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +55,7 @@ public class MainActivity extends AppCompatActivity
 
 
     ProductAdapter pa;
-
+    public TrackGPS gps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +72,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         //Implementation of adapter
         pa = new ProductAdapter(getApplicationContext());

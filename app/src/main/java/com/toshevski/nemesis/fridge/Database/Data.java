@@ -28,6 +28,10 @@ public class Data {
         dbc.getWritableDatabase().insert(DB.Markets.TABLE_NAME, null, cv);
     }
 
+    public void deleteMarkets() {
+        dbc.getWritableDatabase().execSQL("DROP TABLE IF EXISTS " + DB.Markets.TABLE_NAME);
+    }
+
 
     public void insertIntoProducts(Product m) {
         ContentValues cv = new ContentValues();
