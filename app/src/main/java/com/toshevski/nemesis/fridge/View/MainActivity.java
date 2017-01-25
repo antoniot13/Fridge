@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.graphics.drawable.DrawerArrowDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -47,7 +48,8 @@ public class MainActivity extends AppCompatActivity
 
         Data d = new Data(getApplicationContext());
         FillDB fdb = new FillDB(getApplicationContext());
-
+        d.setLimit(2000);
+        d.setBudget(1000);
         if (d.getAllProducts().size() < 1)
             fdb.FillProducts();
         if (d.getAllMarkets().size() < 1)
@@ -111,7 +113,16 @@ public class MainActivity extends AppCompatActivity
         View header = getLayoutInflater().inflate(R.layout.listview_header, null);
         CircularProgressBar cpb = (CircularProgressBar) header.findViewById(R.id.cpb);
         cpb.setColor(Color.rgb(112, 206, 224));
-        cpb.setProgressWithAnimation(80, 2500);
+        Data d = new Data(this);
+        int progress = (int) (100.0/d.getLimit() * d.getBudget());
+        cpb.setProgressWithAnimation(progress, 2500);
+
+        TextView limit = (TextView) header.findViewById(R.id.tvLimit);
+        TextView budget = (TextView) header.findViewById(R.id.tvBudget);
+
+        limit.setText("Limit: " + d.getLimit());
+        budget.setText("Budget: " + d.getBudget());
+
         return header;
     }
 

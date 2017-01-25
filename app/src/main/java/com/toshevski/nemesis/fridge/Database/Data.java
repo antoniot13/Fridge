@@ -61,6 +61,13 @@ public class Data {
         editor.apply();
     }
 
+    public void setLimit(int budget) {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putInt("Limit", budget);
+        editor.apply();
+    }
+
     public int reduceBudget(int howMuchToReduce) {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         int budget = settings.getInt("Budget", 0);
@@ -84,6 +91,11 @@ public class Data {
     public int getBudget() {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         return settings.getInt("Budget", 0);
+    }
+
+    public int getLimit() {
+        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
+        return settings.getInt("Limit", 0);
     }
 
     public void deleteFromMarkets(Market m) {
