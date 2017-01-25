@@ -7,8 +7,8 @@
 
     <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
         android:id="@+id/progress_1"
-        android:layout_height="320dp"
-        android:layout_width="40dp"
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
         app:rcBackgroundPadding="5dp" />
 
     <TextView

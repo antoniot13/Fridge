@@ -1,5 +1,6 @@
 package com.toshevski.nemesis.fridge.View;
 
+import com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar;
 import com.amulyakhare.textdrawable.TextDrawable;
 
 import com.toshevski.nemesis.fridge.Database.Data;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity
 
         Data d = new Data(getApplicationContext());
         FillDB fdb = new FillDB(getApplicationContext());
+
         if (d.getAllProducts().size() < 1)
             fdb.FillProducts();
         if (d.getAllMarkets().size() < 1)
@@ -101,12 +103,18 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private void setUpProgress() {
+
+    }
+
     private View makeHeader() {
         View header = (View) getLayoutInflater().inflate(R.layout.listview_header, null);
         header.setBackgroundColor(Color.RED);
         TextView tv = (TextView) header.findViewById(R.id.headerText);
         tv.setText("TESTSTSTSTS");
-
+        RoundCornerProgressBar rcpb = (RoundCornerProgressBar) header.findViewById(R.id.progress_1);
+        rcpb.setMax(700);
+        rcpb.setProgress(350);
         return header;
     }
 
