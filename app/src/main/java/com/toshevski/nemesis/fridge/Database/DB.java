@@ -7,8 +7,8 @@ import android.provider.BaseColumns;
 
 public final class DB extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "Fridge.db";
+    public static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "Fridge.db";
 
     public DB(Context ctx) {
         super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
@@ -19,6 +19,12 @@ public final class DB extends SQLiteOpenHelper {
         public static final String NAME = "name";
         public static final String LAT = "lat";
         public static final String LON = "lon";
+    }
+
+    public static class ReceiptsProducts implements BaseColumns {
+        public static final String TABLE_NAME = "ReceiptsProducts";
+        public static final String RID = "rid";
+        public static final String PID = "pid";
     }
 
     public static class Recipes implements BaseColumns {
@@ -34,42 +40,66 @@ public final class DB extends SQLiteOpenHelper {
         public static final String AVAIL = "avail";
     }
 
-    private static final String TEXT_TYPE = " TEXT";
-    private static final String DECIMAL_TYPE = " DECIMAL";
-    private static final String COMMA_SEP = ",";
-    private static final String SQL_CREATE_MARKETS =
+    public static class Fridge implements BaseColumns {
+        static final String TABLE_NAME = "Fridges";
+        static final String NAME = "name";
+    }
+
+    public static final String TEXT_TYPE = " TEXT";
+    public static final String DECIMAL_TYPE = " DECIMAL";
+    public static final String COMMA_SEP = ",";
+    public static final String SQL_CREATE_MARKETS =
             "CREATE TABLE " + Markets.TABLE_NAME + " (" +
                     Markets._ID + " INTEGER PRIMARY KEY," +
                     Markets.NAME + TEXT_TYPE + COMMA_SEP +
                     Markets.LAT + DECIMAL_TYPE + COMMA_SEP +
                     Markets.LON + DECIMAL_TYPE + " )";
 
-    private static final String SQL_CREATE_RECIPES =
+    public static final String SQL_CREATE_RECIPES =
             "CREATE TABLE " + Recipes.TABLE_NAME + " (" +
                     Recipes._ID + " INTEGER PRIMARY KEY," +
                     Recipes.NAME + TEXT_TYPE + COMMA_SEP +
                     Recipes.DESC + TEXT_TYPE + " )";
 
-    private static final String SQL_CREATE_PRODUCTS =
+    public static final String SQL_CREATE_PRODUCTS =
             "CREATE TABLE " + Products.TABLE_NAME + " (" +
                     Products._ID + " INTEGER PRIMARY KEY," +
                     Products.NAME + TEXT_TYPE + COMMA_SEP +
                     Products.AVAIL + " INTEGER" + COMMA_SEP +
                     Products.QTY + " DECIMAL" + " )";
 
-    private static final String SQL_DELETE_MARKETS =
+    public static final String SQL_CREATE_FRIDGES =
+            "CREATE TABEL " + Fridge.TABLE_NAME + " (" +
+                    Fridge._ID + " INTEGER PRIMARY KEY," +
+                    Fridge.NAME + TEXT_TYPE + ")";
+
+    public static final String SQL_CREATE_RECEIPTSPRODUCTS =
+            "CREATE TABLE " + ReceiptsProducts.TABLE_NAME + " (" +
+                    ReceiptsProducts.RID + " INTEGER NOT NULL, " +
+                    ReceiptsProducts.PID + " INTEGER NOT NULL, " +
+                    "PRIMARY KEY ( + " + ReceiptsProducts.RID + ", " + ReceiptsProducts.PID + "))";
+
+    public static final String SQL_DELETE_MARKETS =
             "DROP TABLE IF EXISTS " + Markets.TABLE_NAME;
 
-    private static final String SQL_DELETE_RECIPES =
+    public static final String SQL_DELETE_RECIPES =
             "DROP TABLE IF EXISTS " + Recipes.TABLE_NAME;
 
-    private static final String SQL_DELETE_PRODUCTS =
+    public static final String SQL_DELETE_PRODUCTS =
             "DROP TABLE IF EXISTS " + Products.TABLE_NAME;
+
+    public static final String SQL_DELETE_FRIDGES =
+            "DROP TABLE IF EXISTS " + Fridge.TABLE_NAME;
+
+    public static final String SQL_DELETE_RECEIPTSPRODUCTS=
+            "DROP TABLE IF EXISTS " + ReceiptsProducts.TABLE_NAME;
 
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_MARKETS);
         db.execSQL(SQL_CREATE_RECIPES);
         db.execSQL(SQL_CREATE_PRODUCTS);
+        db.execSQL(SQL_CREATE_FRIDGES);
+        db.execSQL(SQL_CREATE_RECEIPTSPRODUCTS);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -78,6 +108,8 @@ public final class DB extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_MARKETS);
         db.execSQL(SQL_DELETE_RECIPES);
         db.execSQL(SQL_DELETE_PRODUCTS);
+        db.execSQL(SQL_DELETE_FRIDGES);
+        db.execSQL(SQL_DELETE_RECEIPTSPRODUCTS);
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
