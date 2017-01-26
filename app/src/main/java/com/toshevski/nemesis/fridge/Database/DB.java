@@ -94,6 +94,10 @@ public final class DB extends SQLiteOpenHelper {
     public static final String SQL_DELETE_RECEIPTSPRODUCTS=
             "DROP TABLE IF EXISTS " + ReceiptsProducts.TABLE_NAME;
 
+    /**
+     * Kreiranje na baza so izvrshuvanje na SQL izrazi za site tabeli
+     * @param db baza
+     */
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_MARKETS);
         db.execSQL(SQL_CREATE_RECIPES);
@@ -102,6 +106,12 @@ public final class DB extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_RECEIPTSPRODUCTS);
     }
 
+    /**
+     * Promenuvanje na bazata za da odgovara na novata verzija
+     * @param db baza
+     * @param oldVersion broj na starata verzija
+     * @param newVersion broj na novata verzija
+     */
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
@@ -112,6 +122,13 @@ public final class DB extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_RECEIPTSPRODUCTS);
         onCreate(db);
     }
+
+    /**
+     * Promenuvanje na bazata za da odgovara na poniska verzija
+     * @param db baza
+     * @param oldVersion stara verzija
+     * @param newVersion nova verzija
+     */
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }

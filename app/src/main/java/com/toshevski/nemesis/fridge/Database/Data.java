@@ -25,6 +25,12 @@ public class Data {
         dbc = new DB(ctx);
     }
 
+    /**
+     * Zachuvuvanje na korisnichkite podatoci vo SharedPreferences
+     * @param username username
+     * @param password password
+     * @param saveMe dali da se logira korisnikot pak naredniot pat
+     */
     public void saveCredentials(String username, String password, boolean saveMe) {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         SharedPreferences.Editor editor = settings.edit();
@@ -34,18 +40,19 @@ public class Data {
         editor.apply();
     }
 
-    public void setSaveMe(boolean saveme) {
-        SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean("saveme", saveme);
-        editor.apply();
-    }
-
+    /**
+     * Proverka dali korisnikot e zapameten
+     * @return boolean
+     */
     public boolean getSaveMe() {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         return settings.getBoolean("saveme", false);
     }
 
+    /**
+     * Dodavanje na Marketi vo bazata
+     * @param m marketot koj sakame da go dodademe
+     */
     public void insertIntoMarket(Market m) {
         ContentValues cv = new ContentValues();
         cv.put(DB.Markets.NAME, m.Name);
@@ -55,6 +62,10 @@ public class Data {
         dbc.getWritableDatabase().insert(DB.Markets.TABLE_NAME, null, cv);
     }
 
+    /**
+     * Setiranje na budzhet
+     * @param budget vrednosta na koja kje setirame
+     */
     public void setBudget(int budget) {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         SharedPreferences.Editor editor = settings.edit();
@@ -62,6 +73,10 @@ public class Data {
         editor.apply();
     }
 
+    /**
+     * Setiranje na limitot za troshenje
+     * @param budget vrednost na koja setirame
+     */
     public void setLimit(int budget) {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         SharedPreferences.Editor editor = settings.edit();
@@ -69,6 +84,11 @@ public class Data {
         editor.apply();
     }
 
+    /**
+     * Namaluvawe na budzhet
+     * @param howMuchToReduce za kolku
+     * @return vrakjame kolku e budzhetot
+     */
     public int reduceBudget(int howMuchToReduce) {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         int budget = settings.getInt("Budget", 0);
@@ -79,6 +99,11 @@ public class Data {
         return budget;
     }
 
+    /**
+     * Zgolemuvanje na budzhetot
+     * @param howMuchToReduce za kolku
+     * @return vrakjanje na budzhetot
+     */
     public int increaseBudget(int howMuchToReduce) {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         int budget = settings.getInt("Budget", 0);
@@ -89,22 +114,35 @@ public class Data {
         return budget;
     }
 
+    /**
+     * Vrakja kolku ni e budzhetot
+     * @return int
+     */
     public int getBudget() {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         return settings.getInt("Budget", 0);
     }
 
+    /**
+     * Ni go vrakja limitot
+     * @return int
+     */
     public int getLimit() {
         SharedPreferences settings = ctx.getSharedPreferences("Pref", 0);
         return settings.getInt("Limit", 0);
     }
 
+    /**
+     * Gi brishe site podatoci od tabela
+     * @param TABLE_NAME imeto na tabelata od kade kje brisheme
+     */
     public void cleanTable(String TABLE_NAME) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         String query = "DELETE * FROM " + TABLE_NAME;
         db.rawQuery(query, null);
     }
 
+    
     public void deleteFromMarkets(Market m) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         String query = "DELETE FROM " + DB.Markets.TABLE_NAME + " WHERE name = " + m.Name;
