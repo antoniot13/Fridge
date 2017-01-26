@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
+import android.util.Log;
 
 import com.toshevski.nemesis.fridge.Model.Fridge;
 import com.toshevski.nemesis.fridge.Model.Market;
@@ -127,8 +128,8 @@ public class Data {
 
         long RID = dbc.getWritableDatabase().insert(DB.Recipes.TABLE_NAME, null, cv);
         for (Product p : r.Products) {
-            long PID = getID(DB.Products.TABLE_NAME, p.Name);
-            insertIntoReceiptsProducts((int) RID, (int) PID);
+            int PID = getID(p.Name);
+            insertIntoReceiptsProducts((int) RID, PID);
         }
     }
 
@@ -140,12 +141,15 @@ public class Data {
         dbc.getWritableDatabase().insert(DB.ReceiptsProducts.TABLE_NAME, null, cv);
     }
 
-    public long getID(String TABLE, String NAME) {
+    public int getID(String NAME) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         Cursor mCursor = db.rawQuery(
-                "SELECT id  FROM " + TABLE + " WHERE name = '" + NAME + "'", null);
+                "SELECT * FROM " + DB.Products.TABLE_NAME + " WHERE name = '" + NAME + "'", null);
         if (mCursor != null) {
-            return mCursor.getLong(0);
+            mCursor.moveToFirst();
+            int id = mCursor.getInt(0);
+            mCursor.close();
+            return id;
         }
         return -1;
     }
@@ -158,6 +162,25 @@ public class Data {
         cv.put(DB.Products.QTY, m.Quantity);
 
         return dbc.getWritableDatabase().insert(DB.Products.TABLE_NAME, null, cv);
+    }
+
+    public Product getProduct(int id) {
+        SQLiteDatabase db = dbc.getReadableDatabase();
+        String query = "SELECT  * FROM " + DB.Products.TABLE_NAME + " WHERE id = " + id;
+
+        Cursor c = db.rawQuery(query, null);
+
+        Product mark = null;
+        if (c.moveToFirst()) {
+            String name = c.getString(1);
+            boolean avail = Integer.parseInt(c.getString(2)) != 0;
+            double qty = Double.parseDouble(c.getString(3));
+            mark = new Product(name, qty, avail);
+            c.close();
+            return mark;
+        }
+        c.close();
+        return null;
     }
 
     public void deleteFromProducts(Product m) {
@@ -178,6 +201,44 @@ public class Data {
         String query = "DELETE FROM " + DB.Fridge.TABLE_NAME + " WHERE name = " + m.Name;
 
         db.rawQuery(query, null);
+    }
+
+    public ArrayList<Recipe> getAllReceiptsWithProducts() {
+        ArrayList<Recipe> m = new ArrayList<>();
+
+        SQLiteDatabase db = dbc.getReadableDatabase();
+
+        String query = "SELECT  * FROM " + DB.Recipes.TABLE_NAME;
+
+        Cursor c = db.rawQuery(query, null);
+        Cursor c2;
+
+        if (c.moveToFirst()) {
+            do {
+                int id = c.getInt(0);
+                String name = c.getString(1);
+                String desc = c.getString(2);
+                Recipe r = new Recipe(name, new ArrayList<Product>(), desc);
+
+                String insideQuery = "SELECT  * FROM " + DB.ReceiptsProducts.TABLE_NAME +
+                        " WHERE RID = " + id;
+                c2 = db.rawQuery(insideQuery, null);
+                if (c2.moveToFirst()) {
+                    do {
+                        int pid = c2.getInt(1);
+                        if (pid == -1)
+                            continue;
+                        Product p = getProduct(pid);
+                        r.Products.add(p);
+                    } while (c2.moveToNext());
+                }
+                c2.close();
+                m.add(r);
+            } while (c.moveToNext());
+        }
+
+        c.close();
+        return m;
     }
 
     public ArrayList<Market> getAllMarkets() {

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:paddingBottom="20dp"
+    android:paddingBottom="10dp"
     >
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
@@ -13,20 +13,23 @@
         app:cpb_background_progressbar_color="#A4E7F5"
         app:cpb_background_progressbar_width="5dp"
         app:cpb_progressbar_color="#1d4a93"
-        app:cpb_progressbar_width="20dp" />
+        app:cpb_progressbar_width="20dp"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
+        android:paddingLeft="20dp"
         android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tvLimit"
+            android:textSize="30sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tvBudget"
+            android:textSize="30sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

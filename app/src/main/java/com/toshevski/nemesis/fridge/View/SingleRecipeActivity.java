@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -27,31 +28,13 @@ public class SingleRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_single_recipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-/*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-*/
-        // tuka implementacija za button
-        findViewById(R.id.action_a).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent simple = new Intent(SingleRecipeActivity.this,AddProductActivity.class);
-                startActivity(simple);
-            }
-        });
 
-        findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(SingleRecipeActivity.this, "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
-            }
-        });
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
 
         int s= getIntent().getIntExtra("int_value",0);
         ArrayList<Recipe> recipes= StaticData.getRecipes();
@@ -59,7 +42,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
         ArrayList<String> products=new ArrayList<String>();
         for(Product p : recipes.get(s).Products)
         {
-            products.add(p.Quantity+"    "+p.Name.toString());
+            products.add(p.Quantity + "    " + p.Name);
         }
         ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, products);
         ListView codeLearnLessons = (ListView)findViewById(R.id.singleRecipeList);

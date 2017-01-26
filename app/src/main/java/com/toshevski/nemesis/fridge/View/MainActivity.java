@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity
 
 
     ProductAdapter pa;
+    ListView productsInListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         Data d = new Data(getApplicationContext());
         FillDB fdb = new FillDB(getApplicationContext());
         d.setLimit(2000);
-        d.setBudget(1000);
+        d.setBudget(654);
         if (d.getAllProducts().size() < 1)
             fdb.FillProducts();
         if (d.getAllMarkets().size() < 1)
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity
 
         //Implementation of adapter
         pa = new ProductAdapter(getApplicationContext());
-        ListView productsInListView = (ListView)findViewById(R.id.listProducts);
+        productsInListView = (ListView)findViewById(R.id.listProducts);
         productsInListView.setAdapter(pa);
         pa.notifyDataSetChanged();
         productsInListView.setAlpha(1);
@@ -116,8 +117,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void setUpProgress() {
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        pa = new ProductAdapter(getApplicationContext());
+        productsInListView = (ListView)findViewById(R.id.listProducts);
+        productsInListView.setAdapter(pa);
+        pa.notifyDataSetChanged();
     }
 
     private View makeHeader() {

@@ -24,6 +24,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.LoginActivity"
+            android:noHistory="true"
             android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,22 +34,27 @@
         </activity>
         <activity
             android:name=".View.MarketActivity"
+            android:parentActivityName=".View.MainActivity"
             android:label="@string/markets" />
         <activity
             android:name=".View.AddRecipeActivity"
+            android:parentActivityName=".View.MainActivity"
             android:label="@string/title_activity_add_recipe"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".View.MyRecipesActivity"
+            android:parentActivityName=".View.MainActivity"
             android:label="@string/title_activity_my_recipes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.SingleRecipeActivity"
+            android:parentActivityName=".View.MainActivity"
             android:label="@string/title_activity_single_recipe"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.AddProductActivity"
+            android:parentActivityName=".View.MainActivity"
             android:label="@string/title_activity_add_product"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <meta-data android:name="com.google.android.gms.version"

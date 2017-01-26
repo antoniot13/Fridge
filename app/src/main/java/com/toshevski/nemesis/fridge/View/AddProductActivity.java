@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -26,6 +27,13 @@ public class AddProductActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+
       /*  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +48,7 @@ public class AddProductActivity extends AppCompatActivity {
         findViewById(R.id.action_a).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent simple = new Intent(AddProductActivity.this,AddProductActivity.class);
+                Intent simple = new Intent(AddProductActivity.this,MainActivity.class);
                 startActivity(simple);
             }
         });
@@ -48,10 +56,16 @@ public class AddProductActivity extends AppCompatActivity {
         findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddProductActivity.this, "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+                Intent simple = new Intent(AddProductActivity.this,AddRecipeActivity.class);
+                startActivity(simple);
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,6 +91,7 @@ public class AddProductActivity extends AppCompatActivity {
                 d.insertIntoProducts(p);
                 tmp.setText("");
                 tmp2.setText("");
+                finish();
             }
 
         }

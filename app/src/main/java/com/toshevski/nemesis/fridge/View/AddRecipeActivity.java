@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -20,7 +21,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Model.Product;
+import com.toshevski.nemesis.fridge.Model.Recipe;
 import com.toshevski.nemesis.fridge.R;
 
 import java.util.ArrayList;
@@ -33,6 +36,14 @@ public class AddRecipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_recipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        tryToAddReceipt();
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +59,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         findViewById(R.id.action_a).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent simple = new Intent(AddRecipeActivity.this,AddProductActivity.class);
+                Intent simple = new Intent(AddRecipeActivity.this,MainActivity.class);
                 startActivity(simple);
             }
         });
@@ -56,7 +67,8 @@ public class AddRecipeActivity extends AppCompatActivity {
         findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(AddRecipeActivity.this, "Clicked pink Floating Action Button", Toast.LENGTH_SHORT).show();
+                Intent simple = new Intent(AddRecipeActivity.this,AddProductActivity.class);
+                startActivity(simple);
             }
         });
 
@@ -73,13 +85,9 @@ public class AddRecipeActivity extends AppCompatActivity {
                 EditText tmp=(EditText) findViewById(R.id.editText2);
                 if(!tmp.getText().toString().matches("")) {
                     p.Name=tmp.getText().toString();
-
-
                     pa.products.add(p);
                     pa.notifyDataSetChanged();
                     productsInAddRecipe.setAlpha(1);
-
-
                 }
                 tmp.setText("");
 
@@ -87,6 +95,17 @@ public class AddRecipeActivity extends AppCompatActivity {
 
         });
     }
+
+    private void tryToAddReceipt() {
+        Recipe r = new Recipe("test", new ArrayList<Product>(), "opis");
+        Data d = new Data(this);
+        ArrayList<Product> p = d.getAllProducts();
+        r.Products.add(p.get(0));
+        r.Products.add(p.get(1));
+        r.Products.add(p.get(2));
+        d.insertIntoReceipts(r);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

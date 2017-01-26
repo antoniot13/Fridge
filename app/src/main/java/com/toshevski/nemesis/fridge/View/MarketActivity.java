@@ -7,7 +7,11 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.location.Location;
 import android.net.Uri;
+
 import android.os.AsyncTask;
+
+import android.support.v7.app.ActionBar;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,6 +67,13 @@ public class MarketActivity extends AppCompatActivity {
         marketsInListView.setAdapter(ma);
         ma.notifyDataSetChanged();
         marketsInListView.setAlpha(1);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
 
         marketsInListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -191,7 +202,11 @@ public class MarketActivity extends AppCompatActivity {
         @Override
         public View getView(int arg0, View arg1, ViewGroup arg2) {
             LayoutInflater inflater = (LayoutInflater) MarketActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
             arg1 = inflater.inflate(R.layout.list_view_markets, arg2, false);
+
+            arg1 = inflater.inflate(R.layout.markets_list_view, arg2, false);
+
 
             TextView name = (TextView)arg1.findViewById(R.id.textView1);
             TextView quan = (TextView)arg1.findViewById(R.id.textView2);
