@@ -24,6 +24,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Database.StaticData;
 import com.toshevski.nemesis.fridge.Model.Recipe;
 import com.toshevski.nemesis.fridge.R;
@@ -46,7 +47,7 @@ public class MyRecipesActivity extends AppCompatActivity   {
         }
 
 
-        ra = new RecipeAdapter();
+        ra = new RecipeAdapter(getApplicationContext());
         ListView marketsInListView = (ListView) findViewById(R.id.listRecipes);
         marketsInListView.setAdapter(ra);
         ra.notifyDataSetChanged();
@@ -64,7 +65,12 @@ public class MyRecipesActivity extends AppCompatActivity   {
 
     public class RecipeAdapter extends BaseAdapter {
 
-        ArrayList<Recipe> recipes = StaticData.getRecipes();
+        ArrayList<Recipe> recipes;// = StaticData.getRecipes();
+
+        public RecipeAdapter(Context ctx) {
+            Data d = new Data(ctx);
+            recipes = d.getAllReceipts();
+        }
 
         @Override
         public int getCount() {
