@@ -129,6 +129,10 @@ public class Data {
         long RID = dbc.getWritableDatabase().insert(DB.Recipes.TABLE_NAME, null, cv);
         for (Product p : r.Products) {
             int PID = getID(p.Name);
+            if (PID == -1) {
+                p.Quantity = 0;
+                PID = (int) insertIntoProducts(p);
+            }
             insertIntoReceiptsProducts((int) RID, PID);
         }
     }
