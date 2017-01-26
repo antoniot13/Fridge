@@ -209,7 +209,12 @@ public class MainActivity extends AppCompatActivity
 
         ProductAdapter(Context ctx) {
             Data d = new Data(ctx);
-            products = d.getAllProducts();
+            products = new ArrayList<>();
+            ArrayList<Product> p = d.getAllProducts();
+            for (Product p1: p) {
+                if (p1.Quantity != 0)
+                    products.add(p1);
+            }
         }
 
         @Override
@@ -238,12 +243,14 @@ public class MainActivity extends AppCompatActivity
             TextDrawable drawable = TextDrawable.builder().buildRect("A", Color.RED);
             Product product = products.get(arg0);
 
+            /*
             if (product.Quantity == 0.0) {
                // name.setVisibility(View.GONE);
                // quan.setVisibility(View.GONE);
                 products.remove(arg0);
                 pa.notifyDataSetChanged();
             }
+            */
             name.setText(product.Name);
             quan.setText("Количество: " + Double.toString(product.Quantity));
             if(product.IsAvailable) {

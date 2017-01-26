@@ -150,10 +150,11 @@ public class Data {
         Cursor mCursor = db.rawQuery(
                 "SELECT * FROM " + DB.Products.TABLE_NAME + " WHERE name = '" + NAME + "'", null);
         if (mCursor != null) {
-            mCursor.moveToFirst();
-            int id = mCursor.getInt(0);
-            mCursor.close();
-            return id;
+            if (mCursor.moveToFirst()) {
+                int id = mCursor.getInt(0);
+                mCursor.close();
+                return id;
+            }
         }
         return -1;
     }
