@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity
             products = new ArrayList<>();
             ArrayList<Product> p = d.getAllProducts();
             for (Product p1: p) {
-                if (p1.Quantity != 0)
+                if (p1.Quantity != -66)
                     products.add(p1);
             }
         }

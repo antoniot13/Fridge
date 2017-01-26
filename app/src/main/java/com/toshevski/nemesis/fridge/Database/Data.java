@@ -130,7 +130,7 @@ public class Data {
         for (Product p : r.Products) {
             int PID = getID(p.Name);
             if (PID == -1) {
-                p.Quantity = 0;
+                p.Quantity = -66;
                 PID = (int) insertIntoProducts(p);
             }
             insertIntoReceiptsProducts((int) RID, PID);
