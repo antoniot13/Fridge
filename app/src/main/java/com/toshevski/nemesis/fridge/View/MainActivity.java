@@ -10,7 +10,10 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -239,18 +242,15 @@ public class MainActivity extends AppCompatActivity
 
             TextView name = (TextView)arg1.findViewById(R.id.textView1);
             TextView quan = (TextView)arg1.findViewById(R.id.textView2);
-            ImageView image = (ImageView) findViewById(R.id.image_view);
+            ImageView image = (ImageView) arg1.findViewById(R.id.image_view);
             TextDrawable drawable = TextDrawable.builder().buildRect("A", Color.RED);
             Product product = products.get(arg0);
 
-            /*
+
             if (product.Quantity == 0.0) {
-               // name.setVisibility(View.GONE);
-               // quan.setVisibility(View.GONE);
-                products.remove(arg0);
-                pa.notifyDataSetChanged();
+                image.setImageResource(R.drawable.ic_album_red);
             }
-            */
+
             name.setText(product.Name);
             quan.setText("Количество: " + Double.toString(product.Quantity));
             if(product.IsAvailable) {
