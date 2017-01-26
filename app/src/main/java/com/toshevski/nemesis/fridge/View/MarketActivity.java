@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +41,12 @@ public class MarketActivity extends AppCompatActivity {
         marketsInListView.setAdapter(ma);
         ma.notifyDataSetChanged();
         marketsInListView.setAlpha(1);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
 
         marketsInListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
