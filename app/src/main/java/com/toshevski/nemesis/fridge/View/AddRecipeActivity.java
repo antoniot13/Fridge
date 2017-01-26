@@ -94,6 +94,9 @@ public class AddRecipeActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Test dali se dodavaat receptite vo bazata
+     */
     private void tryToAddReceipt() {
         Recipe r = new Recipe("Shtarechi", new ArrayList<Product>(), "nekoj golem opis");
         Data d = new Data(this);
@@ -146,6 +149,9 @@ public class AddRecipeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Adapter za produktite vo receptite
+     */
     public class ProductAdapter extends BaseAdapter {
 
         @Override

@@ -62,8 +62,9 @@ public class MyRecipesActivity extends AppCompatActivity   {
         });
     }
 
-
-
+    /**
+     * Adapter za receptite
+     */
     public class RecipeAdapter extends BaseAdapter {
 
         ArrayList<Recipe> recipes;// = StaticData.getRecipes();

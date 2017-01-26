@@ -90,6 +90,9 @@ public class MarketActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * AsyncTask za sobiranje na podatoci od GoogleMaps
+     */
     class GetResults extends AsyncTask<Location, Void, String> {
 
         public String googlePlaces = null;
@@ -170,6 +173,9 @@ public class MarketActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Adapter za prikazhuvanje na marketite
+     */
     public class MarketAdapter extends BaseAdapter {
 
         public ArrayList<Market> markets;
