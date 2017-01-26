@@ -130,8 +130,10 @@ public class Data {
         Cursor mCursor = db.rawQuery(
                 "SELECT id  FROM " + TABLE + " WHERE name = '" + NAME + "'", null);
         if (mCursor != null) {
+            mCursor.close();
             return mCursor.getLong(0);
         }
+        mCursor.close();
         return -1;
     }
 

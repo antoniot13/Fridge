@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         Data d = new Data(getApplicationContext());
         FillDB fdb = new FillDB(getApplicationContext());
         d.setLimit(2000);
-        d.setBudget(1000);
+        d.setBudget(654);
         if (d.getAllProducts().size() < 1)
             fdb.FillProducts();
         if (d.getAllMarkets().size() < 1)
@@ -102,10 +102,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-    }
-
-    private void setUpProgress() {
 
     }
 
