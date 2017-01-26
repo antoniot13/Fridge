@@ -264,6 +264,10 @@ public class Data {
         dbc.getWritableDatabase().insert(DB.Fridge.TABLE_NAME, null, cv);
     }
 
+    /**
+     * Brishenje na frizhider od baza
+     * @param m koj frizhider da go izbrisheme
+     */
     public void deleteFromFridges(Fridge m) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         String query = "DELETE FROM " + DB.Fridge.TABLE_NAME + " WHERE name = " + m.Name;
@@ -271,6 +275,10 @@ public class Data {
         db.rawQuery(query, null);
     }
 
+    /**
+     * Gi vrakja site recepti so produkti
+     * @return lista od recepti
+     */
     public ArrayList<Recipe> getAllReceiptsWithProducts() {
         ArrayList<Recipe> m = new ArrayList<>();
 
@@ -309,6 +317,10 @@ public class Data {
         return m;
     }
 
+    /**
+     * Gi vrakja site marketi
+     * @return lista od marketi
+     */
     public ArrayList<Market> getAllMarkets() {
         ArrayList<Market> m = new ArrayList<>();
 
@@ -339,6 +351,10 @@ public class Data {
         return m;
     }
 
+    /**
+     * Gi vrakja site produkti
+     * @return lista od produkti
+     */
     public ArrayList<Product> getAllProducts() {
         ArrayList<Product> m = new ArrayList<>();
 
@@ -365,6 +381,10 @@ public class Data {
         return m;
     }
 
+    /**
+     * TEST
+     * @return TEST
+     */
     public ArrayList<Recipe> getAllReceipts() {
         ArrayList<Recipe> m = new ArrayList<>();
 
@@ -392,6 +412,10 @@ public class Data {
         return m;
     }
 
+    /**
+     * Gi vrakja site frizhideri od bazata
+     * @return
+     */
     public ArrayList<Fridge> getAllFridges() {
         ArrayList<Fridge> m = new ArrayList<>();
 
