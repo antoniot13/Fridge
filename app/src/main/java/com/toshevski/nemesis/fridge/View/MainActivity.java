@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity
             fdb.FillProducts();
         if (d.getAllMarkets().size() < 1)
             fdb.FillMarkets();
-        if (d.getAllReceipts().size() < 1)
+        if (d.getAllReceiptsWithProducts().size() < 1)
             fdb.FillReceipts();
 
 
