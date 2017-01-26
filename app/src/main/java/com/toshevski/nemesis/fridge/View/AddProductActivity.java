@@ -78,7 +78,7 @@ public class AddProductActivity extends AppCompatActivity {
                 d.insertIntoProducts(p);
                 tmp.setText("");
                 tmp2.setText("");
-                finishActivity(0);
+                finish();
             }
 
         }

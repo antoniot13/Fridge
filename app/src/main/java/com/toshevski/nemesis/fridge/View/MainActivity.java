@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity
 
 
     ProductAdapter pa;
+    ListView productsInListView;
 
 
     @Override
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity
 
         //Implementation of adapter
         pa = new ProductAdapter(getApplicationContext());
-        ListView productsInListView = (ListView)findViewById(R.id.listProducts);
+        productsInListView = (ListView)findViewById(R.id.listProducts);
         productsInListView.setAdapter(pa);
         pa.notifyDataSetChanged();
         productsInListView.setAlpha(1);
@@ -103,6 +104,15 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        pa = new ProductAdapter(getApplicationContext());
+        productsInListView = (ListView)findViewById(R.id.listProducts);
+        productsInListView.setAdapter(pa);
+        pa.notifyDataSetChanged();
     }
 
     private View makeHeader() {
