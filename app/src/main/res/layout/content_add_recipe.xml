@@ -5,7 +5,7 @@
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/content_add_recipe"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -69,16 +69,16 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="142dp"
+        android:layout_height="340dp"
         android:id="@+id/listView"
-        android:layout_weight="0.40" />
+        android:layout_weight="0.70" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
-
             android:gravity="center_vertical"
             android:layout_width="94dp"
             android:layout_height="match_parent"
@@ -91,12 +91,11 @@
             android:id="@+id/textView30" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-
 
         <EditText
             android:text=""
@@ -107,8 +106,6 @@
             android:hint="Опис"
             android:minLines="3"
             android:id="@+id/editText3" />
-
-
 
     </LinearLayout>
   <RelativeLayout

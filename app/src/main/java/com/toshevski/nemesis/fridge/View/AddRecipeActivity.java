@@ -29,13 +29,17 @@ import com.toshevski.nemesis.fridge.R;
 import java.util.ArrayList;
 
 public class AddRecipeActivity extends AppCompatActivity {
-     ProductAdapter pa;
+
+    ProductAdapter pa;
+    ArrayList<Product> products;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        products = new ArrayList<>();
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -74,18 +78,18 @@ public class AddRecipeActivity extends AppCompatActivity {
 
         ImageButton btn=(ImageButton) findViewById(R.id.imageButton);
         pa = new ProductAdapter();
+        final ListView productsInAddRecipe = (ListView)findViewById(R.id.listView);
+
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-
-
-                ListView productsInAddRecipe = (ListView)findViewById(R.id.listView);
-                productsInAddRecipe.setAdapter(pa);
                 Product p =new Product("",0,false);
                 EditText tmp=(EditText) findViewById(R.id.editText2);
                 if(!tmp.getText().toString().matches("")) {
+                    pa = new ProductAdapter();
+                    productsInAddRecipe.setAdapter(pa);
                     p.Name=tmp.getText().toString();
-                    pa.products.add(p);
+                    products.add(p);
                     pa.notifyDataSetChanged();
                     productsInAddRecipe.setAlpha(1);
                 }
@@ -138,7 +142,6 @@ public class AddRecipeActivity extends AppCompatActivity {
         if (id == R.id.action_add) {
             EditText name = (EditText) findViewById(R.id.editText1);
             EditText desc = (EditText) findViewById(R.id.editText3);
-            ArrayList<Product> products = pa.products;
 
             Recipe r = new Recipe(name.getText().toString(), products, desc.getText().toString());
             Data d = new Data(this);
@@ -150,8 +153,6 @@ public class AddRecipeActivity extends AppCompatActivity {
     }
 
     public class ProductAdapter extends BaseAdapter {
-
-        ArrayList<Product> products = new ArrayList<Product>();
 
         @Override
         public int getCount() {
