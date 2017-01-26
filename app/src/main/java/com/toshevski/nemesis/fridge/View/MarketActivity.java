@@ -50,15 +50,15 @@ public class MarketActivity extends AppCompatActivity {
         setContentView(R.layout.activity_market);
 
         // Location impelemntation
-       gps = new TrackGPS(MarketActivity.this);
+    /*   gps = new TrackGPS(MarketActivity.this);
         Location l = new Location("");
         l.setLatitude(gps.getLatitude());
         l.setLongitude(gps.getLongitude());
         new GetResults().execute(l);
-
+*/
         //Implementation of adapter
         places = new ArrayList<>();
-        ma = new MarketAdapter(places);
+        ma = new MarketAdapter(getApplicationContext());
         ListView marketsInListView = (ListView)findViewById(R.id.listMarkets);
         marketsInListView.setAdapter(ma);
         ma.notifyDataSetChanged();
@@ -79,26 +79,50 @@ public class MarketActivity extends AppCompatActivity {
     }
 
 
-    class GetResults extends AsyncTask<Location, Void, Void> {
+    class GetResults extends AsyncTask<Location, Void, String> {
 
-        public ArrayList<Market> places = new ArrayList<>();
+        public String googlePlaces = null;
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(String result) {
+            Log.v("onPost", "onPOst is working");
+           // ma.update(places);
+            Data d = new Data(getApplicationContext());
 
-            ma.update(places);
-            ma.notifyDataSetChanged();
+                try {
+                    JSONObject jObject = new JSONObject(result);
+                    JSONArray jArray = jObject.getJSONArray("results");
 
-            //Data d = new Data(getApplicationContext());
-            //d.deleteMarkets();
-          /*  for(Market place : places) {
-                d.insertIntoMarket(place);
-            }*/
+                    for (int i = 0; i < 10; ++i) {
+                        JSONObject jPlace = jArray.getJSONObject(i);
+                        Log.v("parseJson", jPlace.getString("name"));
+                        JSONObject location = jPlace.getJSONObject("geometry").getJSONObject("location");
+                        double lat = location.getDouble("lat");
+                        double lng = location.getDouble("lng");
+
+                        String name = jPlace.getString("name");
+                        Location l = new Location("");
+                        l.setLatitude(lat);
+                        l.setLongitude(lng);
+                        Market p = new Market(name, l);
+
+                        places.add(p);
+                        Log.i("Iminja:", name);
+                    }
+                    for (Market m : places) {
+                        d.insertIntoMarket(m);
+                    }
+                    ma.notifyDataSetChanged();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
         }
 
         @Override
-        protected Void doInBackground(Location... params) {
+        protected String doInBackground(Location... params) {
             try {
+                Log.v("doInBack", "working");
                 URL url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json" +
                         "?location=" +
                         Double.toString(params[0].getLatitude()) +
@@ -120,41 +144,18 @@ public class MarketActivity extends AppCompatActivity {
                     sb.append(line);
                     line = rd.readLine();
                 }
+                googlePlaces = sb.toString();
 
-                parseJSON(sb.toString());
+                Log.v("jgfagdjagdjlagakjadjah", "BRAAAAAAA");
+                rd.close();
+                inputStream.close();
+                connection.disconnect();
+
 
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return null;
-        }
-
-        private void parseJSON(String line) {
-
-            try {
-                JSONObject response = new JSONObject(line);
-
-                JSONArray results = response.getJSONArray("results");
-
-                for (int i = 0; i < results.length(); ++i) {
-                    JSONObject result = results.getJSONObject(i);
-                    JSONObject location = result.getJSONObject("geometry").getJSONObject("location");
-                    double lat = location.getDouble("lat");
-                    double lng = location.getDouble("lng");
-
-                    String name = result.getString("name");
-                    Location l = new Location("");
-                    l.setLatitude(lat);
-                    l.setLongitude(lng);
-                    Market p = new Market(name, l);
-
-                    places.add(p);
-                    Log.i("Iminja:", name);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            return googlePlaces;
         }
     }
 
@@ -162,9 +163,9 @@ public class MarketActivity extends AppCompatActivity {
 
         public ArrayList<Market> markets;
 
-        MarketAdapter(ArrayList<Market> newMarkets) {
-            //Data d = new Data(ctx);
-            markets = newMarkets;
+        MarketAdapter(Context ctx) {
+            Data d = new Data(ctx);
+            markets = d.getAllMarkets();
         }
 
         @Override
@@ -190,7 +191,7 @@ public class MarketActivity extends AppCompatActivity {
         @Override
         public View getView(int arg0, View arg1, ViewGroup arg2) {
             LayoutInflater inflater = (LayoutInflater) MarketActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            arg1 = inflater.inflate(R.layout.list_view, arg2, false);
+            arg1 = inflater.inflate(R.layout.list_view_markets, arg2, false);
 
             TextView name = (TextView)arg1.findViewById(R.id.textView1);
             TextView quan = (TextView)arg1.findViewById(R.id.textView2);

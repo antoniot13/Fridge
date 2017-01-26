@@ -105,6 +105,21 @@ public class Data {
         db.rawQuery(query, null);
     }
 
+    public void deleteMarkets() {
+
+        String TEXT_TYPE = " TEXT";
+        String DECIMAL_TYPE = " DECIMAL";
+        String COMMA_SEP = ",";
+        SQLiteDatabase db = dbc.getReadableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + DB.Markets.TABLE_NAME);
+        db.execSQL(
+                "CREATE TABLE " + DB.Markets.TABLE_NAME + " (" +
+                        DB.Markets._ID + " INTEGER PRIMARY KEY," +
+                        DB.Markets.NAME + TEXT_TYPE + COMMA_SEP +
+                        DB.Markets.LAT + DECIMAL_TYPE + COMMA_SEP +
+                        DB.Markets.LON + DECIMAL_TYPE + " )");
+    }
+
     public void insertIntoReceipts(Recipe r) {
         ContentValues cv = new ContentValues();
         cv.put(DB.Recipes.NAME, r.Name);

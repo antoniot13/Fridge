@@ -1,4 +1,4 @@
-﻿package com.toshevski.nemesis.fridge.View;
+package com.toshevski.nemesis.fridge.View;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 
@@ -15,6 +15,7 @@ import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.graphics.drawable.DrawerArrowDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity
 
 
     ProductAdapter pa;
-    public TrackGPS gps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         //Implementation of adapter
         pa = new ProductAdapter(getApplicationContext());
