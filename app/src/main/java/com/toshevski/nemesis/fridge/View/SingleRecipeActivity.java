@@ -21,6 +21,7 @@ import com.toshevski.nemesis.fridge.Model.Recipe;
 import com.toshevski.nemesis.fridge.R;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class SingleRecipeActivity extends AppCompatActivity {
 
@@ -46,7 +47,10 @@ public class SingleRecipeActivity extends AppCompatActivity {
         Log.d("INFO:SRA", r.Products.get(0).Name);
         ArrayList<String> products=new ArrayList<>();
         for (Product p : r.Products) {
-            products.add(p.Quantity + "    " + p.Name);
+            if (p.Quantity < 1) {
+                Random rand = new Random();
+                products.add(rand.nextInt(10) + "    " + p.Name);
+            } else products.add(p.Quantity + "    " + p.Name);
         }
         Log.d("INFO:SRA", products.size() + " SIZE");
         Log.d("INFO:SRA", products.get(0));
