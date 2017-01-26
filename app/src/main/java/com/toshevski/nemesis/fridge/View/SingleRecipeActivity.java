@@ -40,15 +40,15 @@ public class SingleRecipeActivity extends AppCompatActivity {
         int s = getIntent().getIntExtra("int_value",0);
         Data d = new Data(this);
         //ArrayList<Recipe> recipes= StaticData.getRecipes();
-        ArrayList<Recipe> recipes= d.getAllReceiptsWithProducts();
+        ArrayList<Recipe> recipes = d.getAllReceiptsWithProducts();
         Recipe r = recipes.get(s);
         Log.d("INFOOO:SRA", r.Products.size() + " SIZE");
         Log.d("INFO:SRA", r.Products.get(0).Name);
-        ArrayList<String> products=new ArrayList<String>();
-        for(Product p : r.Products)
-        {
+        ArrayList<String> products=new ArrayList<>();
+        for (Product p : r.Products) {
             products.add(p.Quantity + "    " + p.Name);
         }
+        Log.d("INFO:SRA", products.size() + " SIZE");
         ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, products);
         ListView codeLearnLessons = (ListView)findViewById(R.id.singleRecipeList);
         codeLearnLessons.setAdapter(codeLearnArrayAdapter);
