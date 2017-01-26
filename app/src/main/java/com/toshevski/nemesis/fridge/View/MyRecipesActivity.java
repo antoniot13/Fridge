@@ -13,6 +13,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -69,7 +70,12 @@ public class MyRecipesActivity extends AppCompatActivity   {
 
         public RecipeAdapter(Context ctx) {
             Data d = new Data(ctx);
-            recipes = d.getAllReceipts();
+            recipes = d.getAllReceiptsWithProducts();
+            Log.i("INFOOO:", recipes.size() + "");
+            for (Recipe r: recipes) {
+                Log.i("INFOOO:", r.Name);
+                Log.i("INFOOO:", r.Products.size() + "");
+            }
         }
 
         @Override

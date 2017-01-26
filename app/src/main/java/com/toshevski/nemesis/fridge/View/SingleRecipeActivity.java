@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Database.StaticData;
 import com.toshevski.nemesis.fridge.Model.Product;
 import com.toshevski.nemesis.fridge.Model.Recipe;
@@ -37,7 +38,9 @@ public class SingleRecipeActivity extends AppCompatActivity {
 
 
         int s= getIntent().getIntExtra("int_value",0);
-        ArrayList<Recipe> recipes= StaticData.getRecipes();
+        Data d = new Data(this);
+        //ArrayList<Recipe> recipes= StaticData.getRecipes();
+        ArrayList<Recipe> recipes= d.getAllReceiptsWithProducts();
         recipes.get(s);
         ArrayList<String> products=new ArrayList<String>();
         for(Product p : recipes.get(s).Products)
