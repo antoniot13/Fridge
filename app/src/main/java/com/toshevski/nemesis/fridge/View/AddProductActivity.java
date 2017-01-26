@@ -45,13 +45,7 @@ public class AddProductActivity extends AppCompatActivity {
 
 */
         // tuka implementacija za button
-        findViewById(R.id.action_a).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent simple = new Intent(AddProductActivity.this,MainActivity.class);
-                startActivity(simple);
-            }
-        });
+      
 
         findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
             @Override

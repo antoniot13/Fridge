@@ -67,82 +67,57 @@
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="340dp"
-        android:id="@+id/listView"
-        android:layout_weight="0.70" />
+        android:layout_height="140dp"
+        android:id="@+id/listView" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
-        <TextView
-            android:gravity="center_vertical"
-            android:layout_width="94dp"
+    </RelativeLayout>
+    <RelativeLayout
+          android:layout_height="wrap_content"
+          android:layout_width="wrap_content" >
+
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/multiple_actions"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/textView29" />
-        <TextView
+            fab:fab_addButtonColorNormal="@color/white"
+            fab:fab_addButtonColorPressed="@color/white_pressed"
+            fab:fab_addButtonPlusIconColor="@color/half_black"
+            fab:fab_labelStyle="@style/menu_labels_style"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
 
-            android:gravity="center_vertical"
-            android:layout_width="94dp"
-            android:layout_height="match_parent"
-            android:id="@+id/textView30" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            <com.getbase.floatingactionbutton.FloatingActionButton
+                android:id="@+id/action_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                fab:fab_colorNormal="@color/white"
+                fab:fab_title="Додади продукт"
+                fab:fab_colorPressed="@color/white_pressed"/>
+        </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
         <EditText
             android:text=""
-            android:layout_width="357dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
             android:backgroundTint="@android:color/white"
             android:imeOptions="actionDone"
             android:hint="Опис"
             android:minLines="3"
-            android:id="@+id/editText3" />
-
-    </LinearLayout>
-  <RelativeLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent">
-
-      <com.getbase.floatingactionbutton.FloatingActionsMenu
-          android:id="@+id/multiple_actions"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          fab:fab_addButtonColorNormal="@color/white"
-          fab:fab_addButtonColorPressed="@color/white_pressed"
-          fab:fab_addButtonPlusIconColor="@color/half_black"
-          fab:fab_labelStyle="@style/menu_labels_style"
-          android:layout_alignParentBottom="true"
-          android:layout_alignParentRight="true"
-          android:layout_alignParentEnd="true"
-          android:layout_marginBottom="230dp">
-
-          <com.getbase.floatingactionbutton.FloatingActionButton
-              android:id="@+id/action_a"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              fab:fab_colorNormal="@color/white"
-              fab:fab_title="Мојот фрижидер"
-              fab:fab_colorPressed="@color/white_pressed"/>
-
-          <com.getbase.floatingactionbutton.FloatingActionButton
-              android:id="@+id/action_b"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              fab:fab_colorNormal="@color/white"
-              fab:fab_title="Додади продукт"
-              fab:fab_colorPressed="@color/white_pressed"/>
-      </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
-  </RelativeLayout>
+            android:id="@+id/editText3"
+            android:layout_marginTop="23dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
 
 
 </LinearLayout>

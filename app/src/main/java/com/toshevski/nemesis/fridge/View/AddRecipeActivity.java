@@ -60,13 +60,7 @@ public class AddRecipeActivity extends AppCompatActivity {
 
         fab.hide();*/
         // tuka implementacija za button
-        findViewById(R.id.action_a).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent simple = new Intent(AddRecipeActivity.this,MainActivity.class);
-                startActivity(simple);
-            }
-        });
+
 
         findViewById(R.id.action_b).setOnClickListener(new View.OnClickListener() {
             @Override
