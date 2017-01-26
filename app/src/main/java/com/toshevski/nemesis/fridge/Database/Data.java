@@ -99,6 +99,12 @@ public class Data {
         return settings.getInt("Limit", 0);
     }
 
+    public void cleanTable(String TABLE_NAME) {
+        SQLiteDatabase db = dbc.getReadableDatabase();
+        String query = "DELETE * FROM " + TABLE_NAME;
+        db.rawQuery(query, null);
+    }
+
     public void deleteFromMarkets(Market m) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         String query = "DELETE FROM " + DB.Markets.TABLE_NAME + " WHERE name = " + m.Name;

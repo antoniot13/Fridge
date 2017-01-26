@@ -20,7 +20,7 @@
 
 
     <ListView
-        android:paddingTop="30dp"
+        android:paddingTop="50dp"
         android:id="@+id/singleRecipeList"
         android:layout_width="match_parent"
         android:layout_height="212dp"
