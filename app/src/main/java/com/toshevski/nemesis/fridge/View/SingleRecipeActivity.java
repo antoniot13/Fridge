@@ -49,7 +49,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
         for (Product p : r.Products) {
             if (p.Quantity < 1) {
                 Random rand = new Random();
-                products.add(rand.nextInt(10) + "    " + p.Name);
+                products.add(rand.nextInt(12) + "    " + p.Name);
             } else products.add(p.Quantity + "    " + p.Name);
         }
         Log.d("INFO:SRA", products.size() + " SIZE");
