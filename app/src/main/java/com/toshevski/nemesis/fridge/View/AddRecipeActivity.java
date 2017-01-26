@@ -118,7 +118,7 @@ public class AddRecipeActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+/*
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
             ListView productsInAddRecipe = (ListView)findViewById(R.id.listView);
@@ -134,6 +134,13 @@ public class AddRecipeActivity extends AppCompatActivity {
             tmp.setText("");
 
 
+        }*/
+        if (id == R.id.action_add) {
+            EditText name = (EditText) findViewById(R.id.editText1);
+            EditText desc = (EditText) findViewById(R.id.editText3);
+            ArrayList<Product> products = pa.products;
+
+            Recipe r = new Recipe(name.getText().toString(), products, desc.getText().toString());
         }
 
         return super.onOptionsItemSelected(item);
