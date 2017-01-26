@@ -36,7 +36,6 @@ public class SingleRecipeActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-
         int s= getIntent().getIntExtra("int_value",0);
         Data d = new Data(this);
         //ArrayList<Recipe> recipes= StaticData.getRecipes();
