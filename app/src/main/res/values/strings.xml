@@ -5,7 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-    <string name="title_activity_login">Најава</string>
+    <string name="title_activity_login">FridgeManager</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Е-маил</string>
