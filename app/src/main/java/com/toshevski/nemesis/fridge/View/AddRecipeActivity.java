@@ -141,6 +141,8 @@ public class AddRecipeActivity extends AppCompatActivity {
             ArrayList<Product> products = pa.products;
 
             Recipe r = new Recipe(name.getText().toString(), products, desc.getText().toString());
+            Data d = new Data(this);
+            d.insertIntoReceipts(r);
         }
 
         return super.onOptionsItemSelected(item);
