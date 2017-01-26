@@ -42,7 +42,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
         ArrayList<String> products=new ArrayList<String>();
         for(Product p : recipes.get(s).Products)
         {
-            products.add(p.Quantity+"    "+p.Name.toString());
+            products.add(p.Quantity + "    " + p.Name);
         }
         ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, products);
         ListView codeLearnLessons = (ListView)findViewById(R.id.singleRecipeList);
