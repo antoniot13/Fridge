@@ -7,7 +7,7 @@ public class Recipe {
     public ArrayList<Product> Products;
     public String Description;
 
-    public Recipe(String name,ArrayList<Product> products,String description)
+    public Recipe(String name, ArrayList<Product> products,String description)
     {
         Name = name;
         Products = new ArrayList<Product>();

@@ -147,6 +147,25 @@ public class Data {
         return dbc.getWritableDatabase().insert(DB.Products.TABLE_NAME, null, cv);
     }
 
+    public Product getProduct(int id) {
+        SQLiteDatabase db = dbc.getReadableDatabase();
+        String query = "SELECT  * FROM " + DB.Products.TABLE_NAME + " WHERE id = " + id;
+
+        Cursor c = db.rawQuery(query, null);
+
+        Product mark = null;
+        if (c.moveToFirst()) {
+            String name = c.getString(1);
+            boolean avail = Integer.parseInt(c.getString(2)) != 0;
+            double qty = Double.parseDouble(c.getString(3));
+            mark = new Product(name, qty, avail);
+            c.close();
+            return mark;
+        }
+        c.close();
+        return null;
+    }
+
     public void deleteFromProducts(Product m) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         String query = "DELETE FROM " + DB.Products.TABLE_NAME + " WHERE name = " + m.Name;
@@ -165,6 +184,45 @@ public class Data {
         String query = "DELETE FROM " + DB.Fridge.TABLE_NAME + " WHERE name = " + m.Name;
 
         db.rawQuery(query, null);
+    }
+
+    public ArrayList<Recipe> getAllReceiptsWithProducts() {
+        ArrayList<Recipe> m = new ArrayList<>();
+
+        SQLiteDatabase db = dbc.getReadableDatabase();
+
+        String query = "SELECT  * FROM " + DB.Recipes.TABLE_NAME;
+
+        Cursor c = db.rawQuery(query, null);
+        Cursor c2;
+
+        Market mark = null;
+        if (c.moveToFirst()) {
+            do {
+                int id = c.getInt(0);
+                String name = c.getString(1);
+                String desc = c.getString(2);
+                Recipe r = new Recipe(name, new ArrayList<Product>(), desc);
+
+                String insideQuery = "SELECT  * FROM " + DB.ReceiptsProducts.TABLE_NAME +
+                        " WHERE RID = " + id;
+                c2 = db.rawQuery(insideQuery, null);
+                if (c2.moveToFirst()) {
+                    do {
+                        int pid = c2.getInt(1);
+                        if (pid == -1)
+                            continue;
+                        Product p = getProduct(pid);
+                        r.Products.add(p);
+                    } while (c2.moveToNext());
+                }
+                c2.close();
+                m.add(r);
+            } while (c.moveToNext());
+        }
+
+        c.close();
+        return m;
     }
 
     public ArrayList<Market> getAllMarkets() {
