@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -36,19 +37,22 @@ public class SingleRecipeActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        int s= getIntent().getIntExtra("int_value",0);
+        int s = getIntent().getIntExtra("int_value",0);
         Data d = new Data(this);
         //ArrayList<Recipe> recipes= StaticData.getRecipes();
         ArrayList<Recipe> recipes= d.getAllReceiptsWithProducts();
-        recipes.get(s);
+        Recipe r = recipes.get(s);
+        Log.d("INFOOO:SRA", r.Products.size() + " SIZE");
+        Log.d("INFO:SRA", r.Products.get(0).Name);
         ArrayList<String> products=new ArrayList<String>();
-        for(Product p : recipes.get(s).Products)
+        for(Product p : r.Products)
         {
             products.add(p.Quantity + "    " + p.Name);
         }
-        ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, products);
+        ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, products);
         ListView codeLearnLessons = (ListView)findViewById(R.id.singleRecipeList);
         codeLearnLessons.setAdapter(codeLearnArrayAdapter);
+        codeLearnArrayAdapter.notifyDataSetChanged();
 
         TextView tmp=(TextView) findViewById(R.id.textView6);
         tmp.setText(recipes.get(s).Description);
