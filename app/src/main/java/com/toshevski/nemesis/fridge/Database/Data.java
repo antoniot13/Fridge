@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
+import android.util.Log;
 
 import com.toshevski.nemesis.fridge.Model.Fridge;
 import com.toshevski.nemesis.fridge.Model.Market;
@@ -112,8 +113,8 @@ public class Data {
 
         long RID = dbc.getWritableDatabase().insert(DB.Recipes.TABLE_NAME, null, cv);
         for (Product p : r.Products) {
-            long PID = getID(DB.Products.TABLE_NAME, p.Name);
-            insertIntoReceiptsProducts((int) RID, (int) PID);
+            int PID = getID(p.Name);
+            insertIntoReceiptsProducts((int) RID, PID);
         }
     }
 
@@ -125,15 +126,16 @@ public class Data {
         dbc.getWritableDatabase().insert(DB.ReceiptsProducts.TABLE_NAME, null, cv);
     }
 
-    public long getID(String TABLE, String NAME) {
+    public int getID(String NAME) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         Cursor mCursor = db.rawQuery(
-                "SELECT id  FROM " + TABLE + " WHERE name = '" + NAME + "'", null);
+                "SELECT * FROM " + DB.Products.TABLE_NAME + " WHERE name = '" + NAME + "'", null);
         if (mCursor != null) {
+            mCursor.moveToFirst();
+            int id = mCursor.getInt(0);
             mCursor.close();
-            return mCursor.getLong(0);
+            return id;
         }
-        mCursor.close();
         return -1;
     }
 
@@ -196,7 +198,6 @@ public class Data {
         Cursor c = db.rawQuery(query, null);
         Cursor c2;
 
-        Market mark = null;
         if (c.moveToFirst()) {
             do {
                 int id = c.getInt(0);

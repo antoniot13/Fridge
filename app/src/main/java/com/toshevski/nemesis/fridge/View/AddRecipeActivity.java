@@ -21,7 +21,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.toshevski.nemesis.fridge.Database.Data;
 import com.toshevski.nemesis.fridge.Model.Product;
+import com.toshevski.nemesis.fridge.Model.Recipe;
 import com.toshevski.nemesis.fridge.R;
 
 import java.util.ArrayList;
@@ -40,6 +42,8 @@ public class AddRecipeActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+
+        tryToAddReceipt();
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -81,13 +85,9 @@ public class AddRecipeActivity extends AppCompatActivity {
                 EditText tmp=(EditText) findViewById(R.id.editText2);
                 if(!tmp.getText().toString().matches("")) {
                     p.Name=tmp.getText().toString();
-
-
                     pa.products.add(p);
                     pa.notifyDataSetChanged();
                     productsInAddRecipe.setAlpha(1);
-
-
                 }
                 tmp.setText("");
 
@@ -95,6 +95,17 @@ public class AddRecipeActivity extends AppCompatActivity {
 
         });
     }
+
+    private void tryToAddReceipt() {
+        Recipe r = new Recipe("test", new ArrayList<Product>(), "opis");
+        Data d = new Data(this);
+        ArrayList<Product> p = d.getAllProducts();
+        r.Products.add(p.get(0));
+        r.Products.add(p.get(1));
+        r.Products.add(p.get(2));
+        d.insertIntoReceipts(r);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
