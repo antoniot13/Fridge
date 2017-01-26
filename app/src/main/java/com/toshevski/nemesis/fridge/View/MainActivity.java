@@ -52,6 +52,8 @@ public class MainActivity extends AppCompatActivity
             fdb.FillProducts();
         if (d.getAllMarkets().size() < 1)
             fdb.FillMarkets();
+        if (d.getAllReceipts().size() < 1)
+            fdb.FillReceipts();
 
 
         setContentView(R.layout.activity_main);
