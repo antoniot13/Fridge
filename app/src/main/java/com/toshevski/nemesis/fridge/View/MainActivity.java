@@ -54,6 +54,9 @@ public class MainActivity extends AppCompatActivity
 
     ProductAdapter pa;
     ListView productsInListView;
+    CircularProgressBar cpb;
+    TextView limit;
+    TextView budget;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,23 +126,32 @@ public class MainActivity extends AppCompatActivity
         productsInListView = (ListView)findViewById(R.id.listProducts);
         productsInListView.setAdapter(pa);
         pa.notifyDataSetChanged();
+        fillProgress();
     }
 
     private View makeHeader() {
         View header = getLayoutInflater().inflate(R.layout.listview_header, null);
-        CircularProgressBar cpb = (CircularProgressBar) header.findViewById(R.id.cpb);
+        cpb = (CircularProgressBar) header.findViewById(R.id.cpb);
         cpb.setColor(Color.rgb(112, 206, 224));
         Data d = new Data(this);
         int progress = (int) (100.0/d.getLimit() * d.getBudget());
         cpb.setProgressWithAnimation(progress, 2500);
 
-        TextView limit = (TextView) header.findViewById(R.id.tvLimit);
-        TextView budget = (TextView) header.findViewById(R.id.tvBudget);
+        limit = (TextView) header.findViewById(R.id.tvLimit);
+        budget = (TextView) header.findViewById(R.id.tvBudget);
 
         limit.setText("Limit: " + d.getLimit());
         budget.setText("Budget: " + d.getBudget());
 
         return header;
+    }
+
+    private void fillProgress(){
+        Data d = new Data(this);
+        int progress = (int) (100.0/d.getLimit() * d.getBudget());
+        cpb.setProgressWithAnimation(progress, 2500);
+        limit.setText("Limit: " + d.getLimit());
+        budget.setText("Budget: " + d.getBudget());
     }
 
     @Override
