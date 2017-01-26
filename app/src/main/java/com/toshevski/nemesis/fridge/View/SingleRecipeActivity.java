@@ -49,6 +49,7 @@ public class SingleRecipeActivity extends AppCompatActivity {
             products.add(p.Quantity + "    " + p.Name);
         }
         Log.d("INFO:SRA", products.size() + " SIZE");
+        Log.d("INFO:SRA", products.get(0));
         ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, products);
         ListView codeLearnLessons = (ListView)findViewById(R.id.singleRecipeList);
         codeLearnLessons.setAdapter(codeLearnArrayAdapter);
