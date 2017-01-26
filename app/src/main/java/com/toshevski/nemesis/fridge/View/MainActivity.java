@@ -141,8 +141,8 @@ public class MainActivity extends AppCompatActivity
         Data d = new Data(this);
         int progress = (int) (100.0/d.getLimit() * d.getBudget());
         cpb.setProgressWithAnimation(progress, 2500);
-        limit.setText("Limit: " + d.getLimit());
-        budget.setText("Budget: " + d.getBudget());
+        limit.setText("Лимит: " + d.getLimit());
+        budget.setText("Буџет: " + d.getBudget());
     }
 
     @Override
