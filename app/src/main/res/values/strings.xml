@@ -23,4 +23,5 @@
     <string name="title_activity_my_recipes">Мои рецепти</string>
     <string name="title_activity_single_recipe">Рецепт</string>
     <string name="title_activity_add_product">Додади Продукт</string>
+    <string name="title_activity_my_budget">MyBudgetActivity</string>
 </resources>

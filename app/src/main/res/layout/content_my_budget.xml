@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_my_budget"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.toshevski.nemesis.fridge.View.MyBudgetActivity"
+    tools:showIn="@layout/activity_my_budget">
+
+
+    <LinearLayout
+        android:layout_width="364dp"
+        android:layout_height="144dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+        <TextView
+            android:text="Месечен лимит:"
+            android:layout_width="115dp"
+            android:gravity="center"
+            android:layout_height="108dp"
+            android:textSize="18sp"
+            android:id="@+id/textView4" />
+
+        <EditText
+            android:text=""
+            android:layout_width="111dp"
+            android:enabled="false"
+            android:layout_height="63dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:id="@+id/editText1" />
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+            <Button
+                android:text="Зачувај"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:textSize="12sp"
+                android:elevation="0dp" />
+
+            <Button
+            android:text="Промени лимит"
+            android:layout_width="109dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:id="@+id/button1" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="366dp"
+        android:layout_height="149dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:text="Денес потрошив:"
+            android:layout_width="116dp"
+            android:gravity="center"
+            android:layout_height="108dp"
+            android:textSize="18sp"
+            android:id="@+id/textView5" />
+
+        <EditText
+            android:text=""
+            android:layout_width="94dp"
+            android:layout_height="63dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:id="@+id/editText2"
+            android:layout_weight="0.45" />
+
+        <Button
+            android:text="Додади"
+            android:layout_width="116dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2"
+            android:textSize="13sp"
+            android:elevation="0dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="366dp"
+        android:layout_height="210dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:text="Досега потрошени:"
+            android:layout_width="116dp"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:layout_height="108dp"
+            android:textSize="16sp"
+            android:id="@+id/textView6"
+            android:layout_weight="0.65" />
+        <TextView
+            android:text=""
+            android:layout_width="116dp"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:layout_height="108dp"
+            android:textSize="16sp"
+            android:id="@+id/textView7" />
+
+
+</LinearLayout>
+</LinearLayout>

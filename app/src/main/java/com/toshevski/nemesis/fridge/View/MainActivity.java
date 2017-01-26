@@ -192,6 +192,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_slideshow) {
+            Intent intent = new Intent(MainActivity.this, MyBudgetActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 
