@@ -2,6 +2,9 @@ package com.toshevski.nemesis.fridge.Model;
 
 import android.location.Location;
 
+/**
+ * Model koj go pretstavuva Marketot
+ */
 public class Market {
     public String Name;
     public Location Location;

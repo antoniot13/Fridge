@@ -22,6 +22,9 @@ public class FillDB {
         this.ctx = ctx;
     }
 
+    /**
+     * Ja potpolnuva bazata so marketi
+     */
     public void FillMarkets() {
 
         Data d = new Data(ctx);
@@ -70,6 +73,9 @@ public class FillDB {
 
     }
 
+    /**
+     * Ja potpolnuva bazata so produkti
+     */
     public void FillProducts() {
         Data d = new Data(ctx);
         d.insertIntoProducts(new Product("Кашкавал", 1.0, true));
@@ -87,6 +93,9 @@ public class FillDB {
         d.insertIntoProducts(new Product("Млеко", 1.0, true));
     }
 
+    /**
+     * Ja potpolnuva bazata so recepti
+     */
     public void FillReceipts() {
         Data d = new Data(ctx);
         ArrayList<Product> products = new ArrayList<Product>();

@@ -1,5 +1,8 @@
 package com.toshevski.nemesis.fridge.Model;
 
+/**
+ * Model koj go pretstavuva Produktot
+ */
 public class Product {
     public String Name;
     public double Quantity;

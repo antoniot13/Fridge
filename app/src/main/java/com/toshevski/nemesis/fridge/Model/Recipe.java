@@ -2,6 +2,9 @@ package com.toshevski.nemesis.fridge.Model;
 
 import java.util.ArrayList;
 
+/**
+ * Model koj go pretstavuva Receptot
+ */
 public class Recipe {
     public String Name;
     public ArrayList<Product> Products;

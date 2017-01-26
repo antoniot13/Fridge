@@ -1,9 +1,8 @@
 package com.toshevski.nemesis.fridge.Model;
 
 /**
- * Created by nemesis on 25-Jan-17.
+ * Model koj go pretstavuva frizhiderot
  */
-
 public class Fridge {
     public String Name;
 }

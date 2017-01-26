@@ -120,6 +120,10 @@ public class MainActivity extends AppCompatActivity
         fillProgress();
     }
 
+    /**
+     * Go kreira header-ot na listata so produkti
+     * @return kreiraniot view
+     */
     private View makeHeader() {
         View header = getLayoutInflater().inflate(R.layout.listview_header, null);
         cpb = (CircularProgressBar) header.findViewById(R.id.cpb);
@@ -137,6 +141,9 @@ public class MainActivity extends AppCompatActivity
         return header;
     }
 
+    /**
+     * Gi potpolnuva vrednosti vo Header-ot za budzhet i limit
+     */
     private void fillProgress(){
         Data d = new Data(this);
         int progress = (int) (100.0/d.getLimit() * d.getBudget());
@@ -204,6 +211,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Adapter za produktite na pochetnata strana
+     */
     public class ProductAdapter extends BaseAdapter {
 
         ArrayList<Product> products;
