@@ -43,7 +43,7 @@ public class AddRecipeActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        tryToAddReceipt();
+        //tryToAddReceipt();
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -97,12 +97,13 @@ public class AddRecipeActivity extends AppCompatActivity {
     }
 
     private void tryToAddReceipt() {
-        Recipe r = new Recipe("test", new ArrayList<Product>(), "opis");
+        Recipe r = new Recipe("Shtarechi", new ArrayList<Product>(), "nekoj golem opis");
         Data d = new Data(this);
         ArrayList<Product> p = d.getAllProducts();
         r.Products.add(p.get(0));
         r.Products.add(p.get(1));
         r.Products.add(p.get(2));
+        r.Products.add(p.get(3));
         d.insertIntoReceipts(r);
     }
 

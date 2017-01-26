@@ -151,7 +151,7 @@ public class Data {
 
     public Product getProduct(int id) {
         SQLiteDatabase db = dbc.getReadableDatabase();
-        String query = "SELECT  * FROM " + DB.Products.TABLE_NAME + " WHERE id = " + id;
+        String query = "SELECT  * FROM " + DB.Products.TABLE_NAME + " WHERE _id = " + id;
 
         Cursor c = db.rawQuery(query, null);
 
@@ -287,7 +287,7 @@ public class Data {
 
         SQLiteDatabase db = dbc.getReadableDatabase();
 
-        String query = "SELECT  * FROM " + DB.Products.TABLE_NAME;
+        String query = "SELECT  * FROM " + DB.Recipes.TABLE_NAME;
 
         Cursor c = db.rawQuery(query, null);
 
@@ -295,6 +295,7 @@ public class Data {
         if (c.moveToFirst()) {
             do {
                 String name = c.getString(1);
+                Log.d("INFOOOR:", name);
                 boolean avail = Integer.parseInt(c.getString(2)) != 0;
                 double qty = Double.parseDouble(c.getString(3));
 
