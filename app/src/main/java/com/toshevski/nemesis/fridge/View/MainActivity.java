@@ -27,6 +27,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -239,11 +240,19 @@ public class MainActivity extends AppCompatActivity
             TextDrawable drawable = TextDrawable.builder().buildRect("A", Color.RED);
             Product product = products.get(arg0);
 
+            if (product.Quantity == 0.0) {
+               // name.setVisibility(View.GONE);
+               // quan.setVisibility(View.GONE);
+                products.remove(arg0);
+                pa.notifyDataSetChanged();
+            }
             name.setText(product.Name);
             quan.setText("Количество: " + Double.toString(product.Quantity));
             if(product.IsAvailable) {
                 name.setTypeface(null, Typeface.BOLD);
             }
+
+
             // image.setImageDrawable(drawable);
 
             return arg1;
