@@ -142,7 +142,10 @@ public class Data {
         db.rawQuery(query, null);
     }
 
-    
+    /**
+     * Brishenje na market od baza
+     * @param m koj market sakame da go izbrisheme
+     */
     public void deleteFromMarkets(Market m) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         String query = "DELETE FROM " + DB.Markets.TABLE_NAME + " WHERE name = " + m.Name;
@@ -150,21 +153,10 @@ public class Data {
         db.rawQuery(query, null);
     }
 
-    public void deleteMarkets() {
-
-        String TEXT_TYPE = " TEXT";
-        String DECIMAL_TYPE = " DECIMAL";
-        String COMMA_SEP = ",";
-        SQLiteDatabase db = dbc.getReadableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS " + DB.Markets.TABLE_NAME);
-        db.execSQL(
-                "CREATE TABLE " + DB.Markets.TABLE_NAME + " (" +
-                        DB.Markets._ID + " INTEGER PRIMARY KEY," +
-                        DB.Markets.NAME + TEXT_TYPE + COMMA_SEP +
-                        DB.Markets.LAT + DECIMAL_TYPE + COMMA_SEP +
-                        DB.Markets.LON + DECIMAL_TYPE + " )");
-    }
-
+    /**
+     * Dodavanje na recept vo baza
+     * @param r koj recept da go dodademe
+     */
     public void insertIntoReceipts(Recipe r) {
         ContentValues cv = new ContentValues();
         cv.put(DB.Recipes.NAME, r.Name);
@@ -181,6 +173,11 @@ public class Data {
         }
     }
 
+    /**
+     * Dodavanje na produkti za receptite. Se chuvaat vo posebna tabela vo bazata
+     * @param RID ID na recept
+     * @param PID ID na produkt
+     */
     public void insertIntoReceiptsProducts(int RID, int PID) {
         ContentValues cv = new ContentValues();
         cv.put(DB.ReceiptsProducts.PID, PID);
@@ -189,6 +186,11 @@ public class Data {
         dbc.getWritableDatabase().insert(DB.ReceiptsProducts.TABLE_NAME, null, cv);
     }
 
+    /**
+     * Baranje na ID na produkt
+     * @param NAME ime na produkt
+     * @return ID na produkt
+     */
     public int getID(String NAME) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         Cursor mCursor = db.rawQuery(
@@ -203,7 +205,11 @@ public class Data {
         return -1;
     }
 
-
+    /**
+     * Dodava produkti vo bazata
+     * @param m produktot koj treba da se dodade
+     * @return ID na dodadeniot produkt
+     */
     public long insertIntoProducts(Product m) {
         ContentValues cv = new ContentValues();
         cv.put(DB.Products.NAME, m.Name);
@@ -213,6 +219,11 @@ public class Data {
         return dbc.getWritableDatabase().insert(DB.Products.TABLE_NAME, null, cv);
     }
 
+    /**
+     * Vrakja produkt spored ID
+     * @param id ID na produkt
+     * @return produkt
+     */
     public Product getProduct(int id) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         String query = "SELECT  * FROM " + DB.Products.TABLE_NAME + " WHERE _id = " + id;
@@ -232,6 +243,10 @@ public class Data {
         return null;
     }
 
+    /**
+     * Brishenje na produkt od baza
+     * @param m koj produkt da go izbrisheme
+     */
     public void deleteFromProducts(Product m) {
         SQLiteDatabase db = dbc.getReadableDatabase();
         String query = "DELETE FROM " + DB.Products.TABLE_NAME + " WHERE name = " + m.Name;
@@ -239,6 +254,10 @@ public class Data {
         db.rawQuery(query, null);
     }
 
+    /**
+     * Dodavanje na frizhider vo bazata
+     * @param f koj frizhider da go dodademe
+     */
     public void insertIntoFridges(Fridge f) {
         ContentValues cv = new ContentValues();
         cv.put(DB.Products.NAME, f.Name);
