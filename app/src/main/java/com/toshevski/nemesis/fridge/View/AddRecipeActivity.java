@@ -143,6 +143,7 @@ public class AddRecipeActivity extends AppCompatActivity {
             Recipe r = new Recipe(name.getText().toString(), products, desc.getText().toString());
             Data d = new Data(this);
             d.insertIntoReceipts(r);
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
